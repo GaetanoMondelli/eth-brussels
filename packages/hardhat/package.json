@@ -5,7 +5,8 @@
     "account": "hardhat run scripts/listAccount.ts",
     "chain": "hardhat node --network hardhat --no-deploy",
     "compile": "hardhat compile",
-    "deploy": "hardhat deploy",
+    "deploy-flare": "hardhat deploy --network coston2",
+    "deploy-sepolia": "hardhat deploy --network sepolia",
     "flatten": "hardhat flatten",
     "fork": "MAINNET_FORKING_ENABLED=true hardhat node --network hardhat --no-deploy",
     "format": "prettier --write ./*.ts ./deploy/**/*.ts ./scripts/**/*.ts ./test/**/*.ts",
@@ -17,6 +18,9 @@
     "verify": "hardhat etherscan-verify"
   },
   "dependencies": {
+    "@layerzerolabs/lz-evm-oapp-v2": "^2.3.29",
+    "@layerzerolabs/lz-evm-protocol-v2": "^2.3.29",
+    "@layerzerolabs/lz-v2-utilities": "^2.3.29",
     "@openzeppelin/contracts": "~4.8.1",
     "@typechain/ethers-v6": "~0.5.1",
     "dotenv": "~16.0.3",
@@ -26,6 +30,7 @@
   "devDependencies": {
     "@ethersproject/abi": "~5.7.0",
     "@ethersproject/providers": "~5.7.1",
+    "@flarenetwork/flare-periphery-contracts": "^0.1.9",
     "@nomicfoundation/hardhat-chai-matchers": "~2.0.3",
     "@nomicfoundation/hardhat-ethers": "~3.0.5",
     "@nomicfoundation/hardhat-network-helpers": "~1.0.6",
