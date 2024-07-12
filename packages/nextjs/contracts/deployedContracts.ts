@@ -4,6 +4,1279 @@
  */
 import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 
-const deployedContracts = {} as const;
+const deployedContracts = {
+  114: {
+    FtsoV2FeedConsumer: {
+      address: "0x04a14C5c473bde21bDd52C2f169d99597B298a5B",
+      abi: [
+        {
+          inputs: [],
+          stateMutability: "nonpayable",
+          type: "constructor",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          name: "feedIndexes",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "getFtsoV2CurrentFeedValues",
+          outputs: [
+            {
+              internalType: "uint256[]",
+              name: "_feedValues",
+              type: "uint256[]",
+            },
+            {
+              internalType: "int8[]",
+              name: "_decimals",
+              type: "int8[]",
+            },
+            {
+              internalType: "uint64",
+              name: "_timestamp",
+              type: "uint64",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+      ],
+      inheritedFunctions: {},
+    },
+    FtsoV2FeedConsumerLz: {
+      address: "0x314773c7C42587d72801A47687CebD789b8BC363",
+      abi: [
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "_endpoint",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "_delegate",
+              type: "address",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "constructor",
+        },
+        {
+          inputs: [],
+          name: "InvalidDelegate",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "InvalidEndpointCall",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "LzTokenUnavailable",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint32",
+              name: "eid",
+              type: "uint32",
+            },
+          ],
+          name: "NoPeer",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "msgValue",
+              type: "uint256",
+            },
+          ],
+          name: "NotEnoughNative",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "addr",
+              type: "address",
+            },
+          ],
+          name: "OnlyEndpoint",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint32",
+              name: "eid",
+              type: "uint32",
+            },
+            {
+              internalType: "bytes32",
+              name: "sender",
+              type: "bytes32",
+            },
+          ],
+          name: "OnlyPeer",
+          type: "error",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "previousOwner",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "newOwner",
+              type: "address",
+            },
+          ],
+          name: "OwnershipTransferred",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: false,
+              internalType: "uint32",
+              name: "eid",
+              type: "uint32",
+            },
+            {
+              indexed: false,
+              internalType: "bytes32",
+              name: "peer",
+              type: "bytes32",
+            },
+          ],
+          name: "PeerSet",
+          type: "event",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "uint32",
+                  name: "srcEid",
+                  type: "uint32",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sender",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "uint64",
+                  name: "nonce",
+                  type: "uint64",
+                },
+              ],
+              internalType: "struct Origin",
+              name: "origin",
+              type: "tuple",
+            },
+          ],
+          name: "allowInitializePath",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "data",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "endpoint",
+          outputs: [
+            {
+              internalType: "contract ILayerZeroEndpointV2",
+              name: "",
+              type: "address",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          name: "feedIndexes",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "getFtsoV2CurrentFeedValues",
+          outputs: [
+            {
+              internalType: "uint256[]",
+              name: "_feedValues",
+              type: "uint256[]",
+            },
+            {
+              internalType: "int8[]",
+              name: "_decimals",
+              type: "int8[]",
+            },
+            {
+              internalType: "uint64",
+              name: "_timestamp",
+              type: "uint64",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "uint32",
+                  name: "srcEid",
+                  type: "uint32",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sender",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "uint64",
+                  name: "nonce",
+                  type: "uint64",
+                },
+              ],
+              internalType: "struct Origin",
+              name: "",
+              type: "tuple",
+            },
+            {
+              internalType: "bytes",
+              name: "",
+              type: "bytes",
+            },
+            {
+              internalType: "address",
+              name: "_sender",
+              type: "address",
+            },
+          ],
+          name: "isComposeMsgSender",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "uint32",
+                  name: "srcEid",
+                  type: "uint32",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sender",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "uint64",
+                  name: "nonce",
+                  type: "uint64",
+                },
+              ],
+              internalType: "struct Origin",
+              name: "_origin",
+              type: "tuple",
+            },
+            {
+              internalType: "bytes32",
+              name: "_guid",
+              type: "bytes32",
+            },
+            {
+              internalType: "bytes",
+              name: "_message",
+              type: "bytes",
+            },
+            {
+              internalType: "address",
+              name: "_executor",
+              type: "address",
+            },
+            {
+              internalType: "bytes",
+              name: "_extraData",
+              type: "bytes",
+            },
+          ],
+          name: "lzReceive",
+          outputs: [],
+          stateMutability: "payable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint32",
+              name: "",
+              type: "uint32",
+            },
+            {
+              internalType: "bytes32",
+              name: "",
+              type: "bytes32",
+            },
+          ],
+          name: "nextNonce",
+          outputs: [
+            {
+              internalType: "uint64",
+              name: "nonce",
+              type: "uint64",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "oAppVersion",
+          outputs: [
+            {
+              internalType: "uint64",
+              name: "senderVersion",
+              type: "uint64",
+            },
+            {
+              internalType: "uint64",
+              name: "receiverVersion",
+              type: "uint64",
+            },
+          ],
+          stateMutability: "pure",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "owner",
+          outputs: [
+            {
+              internalType: "address",
+              name: "",
+              type: "address",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint32",
+              name: "eid",
+              type: "uint32",
+            },
+          ],
+          name: "peers",
+          outputs: [
+            {
+              internalType: "bytes32",
+              name: "peer",
+              type: "bytes32",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint32",
+              name: "_dstEid",
+              type: "uint32",
+            },
+            {
+              internalType: "string",
+              name: "_message",
+              type: "string",
+            },
+            {
+              internalType: "bytes",
+              name: "_options",
+              type: "bytes",
+            },
+            {
+              internalType: "bool",
+              name: "_payInLzToken",
+              type: "bool",
+            },
+          ],
+          name: "quote",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "uint256",
+                  name: "nativeFee",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "lzTokenFee",
+                  type: "uint256",
+                },
+              ],
+              internalType: "struct MessagingFee",
+              name: "fee",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "renounceOwnership",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint32",
+              name: "_dstEid",
+              type: "uint32",
+            },
+            {
+              internalType: "string",
+              name: "_message",
+              type: "string",
+            },
+            {
+              internalType: "bytes",
+              name: "_options",
+              type: "bytes",
+            },
+          ],
+          name: "send",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "bytes32",
+                  name: "guid",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "uint64",
+                  name: "nonce",
+                  type: "uint64",
+                },
+                {
+                  components: [
+                    {
+                      internalType: "uint256",
+                      name: "nativeFee",
+                      type: "uint256",
+                    },
+                    {
+                      internalType: "uint256",
+                      name: "lzTokenFee",
+                      type: "uint256",
+                    },
+                  ],
+                  internalType: "struct MessagingFee",
+                  name: "fee",
+                  type: "tuple",
+                },
+              ],
+              internalType: "struct MessagingReceipt",
+              name: "receipt",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "payable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "_delegate",
+              type: "address",
+            },
+          ],
+          name: "setDelegate",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint32",
+              name: "_eid",
+              type: "uint32",
+            },
+            {
+              internalType: "bytes32",
+              name: "_peer",
+              type: "bytes32",
+            },
+          ],
+          name: "setPeer",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "newOwner",
+              type: "address",
+            },
+          ],
+          name: "transferOwnership",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+      ],
+      inheritedFunctions: {
+        allowInitializePath: "@layerzerolabs/lz-evm-oapp-v2/contracts/oapp/OApp.sol",
+        endpoint: "@layerzerolabs/lz-evm-oapp-v2/contracts/oapp/OApp.sol",
+        isComposeMsgSender: "@layerzerolabs/lz-evm-oapp-v2/contracts/oapp/OApp.sol",
+        lzReceive: "@layerzerolabs/lz-evm-oapp-v2/contracts/oapp/OApp.sol",
+        nextNonce: "@layerzerolabs/lz-evm-oapp-v2/contracts/oapp/OApp.sol",
+        oAppVersion: "@layerzerolabs/lz-evm-oapp-v2/contracts/oapp/OApp.sol",
+        owner: "@layerzerolabs/lz-evm-oapp-v2/contracts/oapp/OApp.sol",
+        peers: "@layerzerolabs/lz-evm-oapp-v2/contracts/oapp/OApp.sol",
+        renounceOwnership: "@layerzerolabs/lz-evm-oapp-v2/contracts/oapp/OApp.sol",
+        setDelegate: "@layerzerolabs/lz-evm-oapp-v2/contracts/oapp/OApp.sol",
+        setPeer: "@layerzerolabs/lz-evm-oapp-v2/contracts/oapp/OApp.sol",
+        transferOwnership: "@layerzerolabs/lz-evm-oapp-v2/contracts/oapp/OApp.sol",
+      },
+    },
+    YourContract: {
+      address: "0xa88e1a1f892124a33DC6044b6B869C467238D1e3",
+      abi: [
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "_owner",
+              type: "address",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "constructor",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "greetingSetter",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "string",
+              name: "newGreeting",
+              type: "string",
+            },
+            {
+              indexed: false,
+              internalType: "bool",
+              name: "premium",
+              type: "bool",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "GreetingChange",
+          type: "event",
+        },
+        {
+          inputs: [],
+          name: "greeting",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "owner",
+          outputs: [
+            {
+              internalType: "address",
+              name: "",
+              type: "address",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "premium",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "_newGreeting",
+              type: "string",
+            },
+          ],
+          name: "setGreeting",
+          outputs: [],
+          stateMutability: "payable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "totalCounter",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "",
+              type: "address",
+            },
+          ],
+          name: "userGreetingCounter",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "withdraw",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          stateMutability: "payable",
+          type: "receive",
+        },
+      ],
+      inheritedFunctions: {},
+    },
+  },
+  11155111: {
+    MyOApp: {
+      address: "0x4EBB6b3Cf77d8d04645b1EE78CB11A399AC9c8c1",
+      abi: [
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "_endpoint",
+              type: "address",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "constructor",
+        },
+        {
+          inputs: [],
+          name: "InvalidDelegate",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "InvalidEndpointCall",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "LzTokenUnavailable",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint32",
+              name: "eid",
+              type: "uint32",
+            },
+          ],
+          name: "NoPeer",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "msgValue",
+              type: "uint256",
+            },
+          ],
+          name: "NotEnoughNative",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "addr",
+              type: "address",
+            },
+          ],
+          name: "OnlyEndpoint",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint32",
+              name: "eid",
+              type: "uint32",
+            },
+            {
+              internalType: "bytes32",
+              name: "sender",
+              type: "bytes32",
+            },
+          ],
+          name: "OnlyPeer",
+          type: "error",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "previousOwner",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "newOwner",
+              type: "address",
+            },
+          ],
+          name: "OwnershipTransferred",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: false,
+              internalType: "uint32",
+              name: "eid",
+              type: "uint32",
+            },
+            {
+              indexed: false,
+              internalType: "bytes32",
+              name: "peer",
+              type: "bytes32",
+            },
+          ],
+          name: "PeerSet",
+          type: "event",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "uint32",
+                  name: "srcEid",
+                  type: "uint32",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sender",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "uint64",
+                  name: "nonce",
+                  type: "uint64",
+                },
+              ],
+              internalType: "struct Origin",
+              name: "origin",
+              type: "tuple",
+            },
+          ],
+          name: "allowInitializePath",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "data",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "endpoint",
+          outputs: [
+            {
+              internalType: "contract ILayerZeroEndpointV2",
+              name: "",
+              type: "address",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "uint32",
+                  name: "srcEid",
+                  type: "uint32",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sender",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "uint64",
+                  name: "nonce",
+                  type: "uint64",
+                },
+              ],
+              internalType: "struct Origin",
+              name: "",
+              type: "tuple",
+            },
+            {
+              internalType: "bytes",
+              name: "",
+              type: "bytes",
+            },
+            {
+              internalType: "address",
+              name: "_sender",
+              type: "address",
+            },
+          ],
+          name: "isComposeMsgSender",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "uint32",
+                  name: "srcEid",
+                  type: "uint32",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "sender",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "uint64",
+                  name: "nonce",
+                  type: "uint64",
+                },
+              ],
+              internalType: "struct Origin",
+              name: "_origin",
+              type: "tuple",
+            },
+            {
+              internalType: "bytes32",
+              name: "_guid",
+              type: "bytes32",
+            },
+            {
+              internalType: "bytes",
+              name: "_message",
+              type: "bytes",
+            },
+            {
+              internalType: "address",
+              name: "_executor",
+              type: "address",
+            },
+            {
+              internalType: "bytes",
+              name: "_extraData",
+              type: "bytes",
+            },
+          ],
+          name: "lzReceive",
+          outputs: [],
+          stateMutability: "payable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint32",
+              name: "",
+              type: "uint32",
+            },
+            {
+              internalType: "bytes32",
+              name: "",
+              type: "bytes32",
+            },
+          ],
+          name: "nextNonce",
+          outputs: [
+            {
+              internalType: "uint64",
+              name: "nonce",
+              type: "uint64",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "oAppVersion",
+          outputs: [
+            {
+              internalType: "uint64",
+              name: "senderVersion",
+              type: "uint64",
+            },
+            {
+              internalType: "uint64",
+              name: "receiverVersion",
+              type: "uint64",
+            },
+          ],
+          stateMutability: "pure",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "owner",
+          outputs: [
+            {
+              internalType: "address",
+              name: "",
+              type: "address",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint32",
+              name: "eid",
+              type: "uint32",
+            },
+          ],
+          name: "peers",
+          outputs: [
+            {
+              internalType: "bytes32",
+              name: "peer",
+              type: "bytes32",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint32",
+              name: "_dstEid",
+              type: "uint32",
+            },
+            {
+              internalType: "string",
+              name: "_message",
+              type: "string",
+            },
+            {
+              internalType: "bytes",
+              name: "_options",
+              type: "bytes",
+            },
+            {
+              internalType: "bool",
+              name: "_payInLzToken",
+              type: "bool",
+            },
+          ],
+          name: "quote",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "uint256",
+                  name: "nativeFee",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "lzTokenFee",
+                  type: "uint256",
+                },
+              ],
+              internalType: "struct MessagingFee",
+              name: "fee",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "renounceOwnership",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint32",
+              name: "_dstEid",
+              type: "uint32",
+            },
+            {
+              internalType: "string",
+              name: "_message",
+              type: "string",
+            },
+            {
+              internalType: "bytes",
+              name: "_options",
+              type: "bytes",
+            },
+          ],
+          name: "send",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "bytes32",
+                  name: "guid",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "uint64",
+                  name: "nonce",
+                  type: "uint64",
+                },
+                {
+                  components: [
+                    {
+                      internalType: "uint256",
+                      name: "nativeFee",
+                      type: "uint256",
+                    },
+                    {
+                      internalType: "uint256",
+                      name: "lzTokenFee",
+                      type: "uint256",
+                    },
+                  ],
+                  internalType: "struct MessagingFee",
+                  name: "fee",
+                  type: "tuple",
+                },
+              ],
+              internalType: "struct MessagingReceipt",
+              name: "receipt",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "payable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "_delegate",
+              type: "address",
+            },
+          ],
+          name: "setDelegate",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint32",
+              name: "_eid",
+              type: "uint32",
+            },
+            {
+              internalType: "bytes32",
+              name: "_peer",
+              type: "bytes32",
+            },
+          ],
+          name: "setPeer",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "newOwner",
+              type: "address",
+            },
+          ],
+          name: "transferOwnership",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+      ],
+      inheritedFunctions: {},
+    },
+  },
+} as const;
 
 export default deployedContracts satisfies GenericContractsDeclaration;
