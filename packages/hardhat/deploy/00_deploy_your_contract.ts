@@ -1,6 +1,7 @@
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { DeployFunction } from "hardhat-deploy/types";
-import { Contract } from "ethers";
+import { Contract, zeroPadValue } from "ethers";
+import { Options } from "@layerzerolabs/lz-v2-utilities";
 
 /**
  * Deploys a contract named "YourContract" using the deployer account and
@@ -22,23 +23,77 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
   const { deployer } = await hre.getNamedAccounts();
   const { deploy } = hre.deployments;
 
-  await deploy("YourContract", {
-    from: deployer,
-    // Contract constructor arguments
-    args: [deployer],
-    log: true,
-    // autoMine: can be passed to the deploy function to make the deployment process faster on local networks by
-    // automatically mining the contract deployment transaction. There is no effect on live networks.
-    autoMine: true,
-  });
+  const flareTestnetEid = 40294;
+  const sepoliaEid = 40161;
+  const polygonEid = 30109;
+  const deplolyedFlarePeer = "0x314773c7C42587d72801A47687CebD789b8BC363";
+  const deplolyedSepoliaPeer = "0x4EBB6b3Cf77d8d04645b1EE78CB11A399AC9c8c1";
 
-  // Get the deployed contract to interact with it after deploying.
-  const yourContract = await hre.ethers.getContract<Contract>("YourContract", deployer);
-  console.log("👋 Initial greeting:", await yourContract.greeting());
+  // const _options = Options.newOptions();
+  const GAS_LIMIT = 1000000; // Gas limit for the executor
+  const MSG_VALUE = 0;
+  // const _options = Options.newOptions().addExecutorLzReceiveOption(GAS_LIMIT, MSG_VALUE);
+  const _options = Options.newOptions().addExecutorLzReceiveOption(200000, 0);
+  console.log("options", _options.toHex(), deployer);
+
+  if (hre.network.name === "coston2") {
+    console.log("📡 Deploying FtsoV2FeedConsumer to the network conston2 as deployer...");
+    const layerZeroEndpointFlareTestnet = "0x6EDCE65403992e310A62460808c4b910D972f10f";
+    const bytes32Peer = zeroPadValue(deplolyedFlarePeer, 32);
+    await deploy("FtsoV2FeedConsumerLz", {
+      from: deployer,
+      // Contract constructor arguments
+      args: [layerZeroEndpointFlareTestnet, deployer],
+      log: true,
+      // autoMine: can be passed to the deploy function to make the deployment process faster on local networks by
+    });
+
+    // Get the deployed contract to interact with it after deploying.
+    const ftsoV2FeedConsumerFlare = await hre.ethers.getContract<Contract>("FtsoV2FeedConsumerLz", deployer);
+    console.log("👋 Initial prices:", await ftsoV2FeedConsumerFlare.getFtsoV2CurrentFeedValues());
+
+    // await ftsoV2FeedConsumerFlare.setPeer(flareTestnetEid, bytes32Peer);
+    console.log("Check the peer", await ftsoV2FeedConsumerFlare.peers(flareTestnetEid));
+    const quote = await ftsoV2FeedConsumerFlare.quote(
+      flareTestnetEid,
+      "first message from gaetano",
+      _options.toHex(),
+      false,
+    );
+    console.log("quote", quote);
+    console.log("First message ", await ftsoV2FeedConsumerFlare.data());
+
+    // const tx = await ftsoV2FeedConsumerFlare.send(flareTestnetEid, "first message from gaetano", _options.toHex(), {
+    //   value: quote[0],
+    // });
+
+    // console.log("tx", tx);
+  }
+
+  if (hre.network.name === "sepolia") {
+    console.log("📡 Deploying YourContract to the network sepolia as deployer...");
+    const layerZeroEndpointSepolia = "0x6EDCE65403992e310A62460808c4b910D972f10f";
+    await deploy("MyOApp", {
+      from: deployer,
+      // Contract constructor arguments
+      // gasLimit: 8000000,
+      args: [layerZeroEndpointSepolia],
+      log: true,
+    });
+
+    const lzSepolia = await hre.ethers.getContract<Contract>("MyOApp", deployer);
+    const bytes32Peer = zeroPadValue(deplolyedFlarePeer, 32);
+    await lzSepolia.setPeer(flareTestnetEid, bytes32Peer);
+
+    console.log("Check the peer", await lzSepolia.peers(flareTestnetEid));
+
+    const quote = await lzSepolia.quote(flareTestnetEid, "hello", _options.toHex().toString(), false);
+    console.log("quote", quote);
+  }
 };
 
 export default deployYourContract;
 
 // Tags are useful if you have multiple deploy files and only want to run one of them.
 // e.g. yarn deploy --tags YourContract
-deployYourContract.tags = ["YourContract"];
+deployYourContract.tags = ["FtsoV2FeedConsumerLz"];
