@@ -41,5 +41,8 @@
   "packageManager": "yarn@3.2.3",
   "engines": {
     "node": ">=18.17.0"
+  },
+  "dependencies": {
+    "@pythnetwork/pyth-sdk-solidity": "^3.1.0"
   }
 }

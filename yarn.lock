@@ -2090,6 +2090,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@pythnetwork/pyth-sdk-solidity@npm:^3.1.0":
+  version: 3.1.0
+  resolution: "@pythnetwork/pyth-sdk-solidity@npm:3.1.0"
+  checksum: 41b0faa3291f40cab2650f343408d020e0f491d0f8a42ff43529db0e4f9ea5e93935249d794aa787f010abb559d6eb55dfaa4e559e52e4d9777610af5e184df8
+  languageName: node
+  linkType: hard
+
 "@rainbow-me/rainbowkit@npm:2.1.0":
   version: 2.1.0
   resolution: "@rainbow-me/rainbowkit@npm:2.1.0"
@@ -12476,6 +12483,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "se-2@workspace:."
   dependencies:
+    "@pythnetwork/pyth-sdk-solidity": ^3.1.0
     husky: ~8.0.3
     lint-staged: ~13.2.2
   languageName: unknown
