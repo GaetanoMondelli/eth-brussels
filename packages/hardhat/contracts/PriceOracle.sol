@@ -29,9 +29,6 @@ contract PriceOracle is BaseHook {
 	/// @notice Oracle pools must have liquidity locked so that they cannot become more susceptible to price manipulation
 	error OraclePoolMustLockLiquidity();
 
-	/// @member index The index of the last written observation for the pool
-	/// @member cardinality The cardinality of the observations array for the pool
-	/// @member cardinalityNext The cardinality target of the observations array for the pool, which will replace cardinality when enough observations are written
 	struct ObservationState {
 		uint16 index;
 		uint16 cardinality;
