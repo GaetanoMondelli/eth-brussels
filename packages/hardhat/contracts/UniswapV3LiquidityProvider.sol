@@ -13,7 +13,11 @@ contract UniswapV3LiquidityProvider is ILiquidityProvider, IDataProvider {
 	uint256 public mockPrice = 1000;
 	string tokenName;
 
-	constructor(address _factory, address[] memory _comparisonTokens, string memory _tokenName) {
+	constructor(
+		address _factory,
+		address[] memory _comparisonTokens,
+		string memory _tokenName
+	) {
 		factory = IUniswapV3Factory(_factory);
 		comparisonTokens = _comparisonTokens;
 		tokenName = _tokenName;
@@ -83,7 +87,8 @@ contract UniswapV3LiquidityProvider is ILiquidityProvider, IDataProvider {
 	}
 
 	function getLabel() external view override returns (string memory) {
-		return string(abi.encodePacked("UniswapV3LiquidityProvider", tokenName));
+		return
+			string(abi.encodePacked("UniswapV3LiquidityProvider", tokenName));
 	}
 
 	function getMetricData(
@@ -100,5 +105,9 @@ contract UniswapV3LiquidityProvider is ILiquidityProvider, IDataProvider {
 		tags[2] = "liquidity";
 		tags[3] = tokenName;
 		return tags;
+	}
+
+	function getAssetID() external view returns (string memory) {
+		return tokenName;
 	}
 }

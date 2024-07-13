@@ -112,4 +112,8 @@ contract UniswapV4LiquidityProvider is ILiquidityProvider, IDataProvider {
 	function getDataTimestamp() external view override returns (uint256) {
 		return block.timestamp;
 	}
+
+	function getAssetID() external view returns (string memory) {
+		return IERC20(token).name();
+	}
 }

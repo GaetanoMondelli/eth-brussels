@@ -49,4 +49,8 @@ contract PythDataProvider is IDataProvider {
 		tags[3] = IERC20(token).name();
 		return tags;
 	}
+
+	function getAssetID() external view returns (string memory) {
+		return IERC20(token).name();
+	}
 }

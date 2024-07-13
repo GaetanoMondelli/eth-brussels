@@ -31,9 +31,13 @@ contract TotalSupplyProvider is IDataProvider {
 		tags[1] = "supply";
 		tags[2] = IERC20(address(token)).name();
 		return tags;
-	}   
+	}
 
 	function getDataTimestamp() external view override returns (uint256) {
 		return block.timestamp;
+	}
+
+	function getAssetID() external view returns (string memory) {
+		return IERC20(token).name();
 	}
 }

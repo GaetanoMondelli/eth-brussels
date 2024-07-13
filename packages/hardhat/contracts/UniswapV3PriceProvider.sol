@@ -93,4 +93,8 @@ contract UniswapV3PriceProvider is IDataProvider {
 		tags[3] = tokenName;
 		return tags;
 	}
+
+	function getAssetID() external view returns (string memory) {
+		return tokenName;
+	}
 }

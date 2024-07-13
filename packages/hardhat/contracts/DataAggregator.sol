@@ -1,17 +1,13 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
-// import {AggregatorV3Interface} from "@chainlink/contracts/src/v0.8/shared/interfaces/AggregatorV3Interface.sol";
-// import {Client} from "@chainlink/contracts-ccip/src/v0.8/ccip/libraries/Client.sol";
-// import {IRouterClient} from "@chainlink/contracts-ccip/src/v0.8/ccip/interfaces/IRouterClient.sol";
-// import {CCIPReceiver} from "@chainlink/contracts-ccip/src/v0.8/ccip/applications/CCIPReceiver.sol";
-// import {TaggingVerifier} from "./TaggingVerifier.sol";
+
 import { OApp, MessagingFee, Origin } from "@layerzerolabs/lz-evm-oapp-v2/contracts/oapp/OApp.sol";
 import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import { LiquidityManager } from "./LiquidityManager.sol";
 import { MessagingReceipt } from "@layerzerolabs/lz-evm-oapp-v2/contracts/oapp/OAppSender.sol";
 import { IFlareContractRegistry } from "@flarenetwork/flare-periphery-contracts/coston2/util-contracts/userInterfaces/IFlareContractRegistry.sol";
 import { IFastUpdater } from "@flarenetwork/flare-periphery-contracts/coston2/ftso/userInterfaces/IFastUpdater.sol";
-
+import { IDataProvider } from "./IDataProvider.sol";
 
 uint32 constant CALLBACK_GAS_LIMIT = 4_000_000;
 
@@ -55,7 +51,8 @@ enum PayFeesIn {
 
 error NotEnoughBalance(uint256 currentBalance, uint256 calculatedFees);
 
-contract IndexAggregator is OApp {
+contract DataAggregator is OApp {
+	IDataProvider[] public dataProviders;
 	TokenInfo[] public tokenInfo;
 	TokenInfo[] tmpTokens;
 	LiquidityManager public liquidityManager;
@@ -86,8 +83,6 @@ contract IndexAggregator is OApp {
 	uint32 public mainChainId;
 	uint256[] public feedIndexes = [0, 2, 9];
 
-
-
 	constructor(
 		TokenInfo[] memory _tokenInfo,
 		address _liquidityManager,
@@ -106,14 +101,13 @@ contract IndexAggregator is OApp {
 			totalSupplies.push(IERC20(_tokenInfo[i]._address).totalSupply());
 		}
 
-        // Flare FTSOv2 configuration
-        contractRegistry = IFlareContractRegistry(
+		// Flare FTSOv2 configuration
+		contractRegistry = IFlareContractRegistry(
 			0xaD67FE66660Fb8dFE9d6b1b4240d8650e30F6019
 		);
 		ftsoV2 = IFastUpdater(
 			contractRegistry.getContractAddressByName("FastUpdater")
 		);
-
 	}
 
 	function isMainChain() public view returns (bool) {
@@ -128,7 +122,6 @@ contract IndexAggregator is OApp {
 		chainId = _chainId;
 		mainChainId = _mainChainId;
 	}
-
 
 	function updateTokenParams(
 		uint256[] memory _totalSupplies,
@@ -232,7 +225,7 @@ contract IndexAggregator is OApp {
 		}
 	}
 
-    	function getFtsoV2CurrentFeedValues()
+	function getFtsoV2CurrentFeedValues()
 		public
 		view
 		returns (
@@ -250,14 +243,18 @@ contract IndexAggregator is OApp {
 		return (feedValues, decimals, timestamp);
 	}
 
-    function normalizePrice(uint256 price, int8 decimals) public pure returns (uint256) {
-        int8 maxDecimals = 10; // Set maximum decimals to 10
-        
-        // Scale the price to the maximum number of decimals
-        uint256 normalizedPrice = price * (10 ** uint256(uint8(maxDecimals - decimals)));
-        
-        return normalizedPrice;
-    }
+	function normalizePrice(
+		uint256 price,
+		int8 decimals
+	) public pure returns (uint256) {
+		int8 maxDecimals = 10; // Set maximum decimals to 10
+
+		// Scale the price to the maximum number of decimals
+		uint256 normalizedPrice = price *
+			(10 ** uint256(uint8(maxDecimals - decimals)));
+
+		return normalizedPrice;
+	}
 
 	function collectPriceFeeds() external {
 		require(
@@ -265,10 +262,13 @@ contract IndexAggregator is OApp {
 			"IndexAggregator: Sampling frequency not reached"
 		);
 
-        (uint256[] memory feedValues, int8[] memory decimals, uint64 timestamp) = getFtsoV2CurrentFeedValues();
+		(
+			uint256[] memory feedValues,
+			int8[] memory decimals,
+			uint64 timestamp
+		) = getFtsoV2CurrentFeedValues();
 
-
-        // we can use the timestamp to check if the price is stale
+		// we can use the timestamp to check if the price is stale
 		// if (timestamp - lastSampleTime >= timeWindow) {
 
 		if (block.timestamp - lastSampleTime >= timeWindow) {
@@ -278,10 +278,12 @@ contract IndexAggregator is OApp {
 				}
 			}
 		}
-    
-		for (uint256 i = 0; i < tokenInfo.length; i++) {
 
-            uint256 normalisedPrice = normalizePrice(feedValues[i], decimals[i]);
+		for (uint256 i = 0; i < tokenInfo.length; i++) {
+			uint256 normalisedPrice = normalizePrice(
+				feedValues[i],
+				decimals[i]
+			);
 			movingAverage[i].push(uint256(normalisedPrice));
 			uint256 sum = 0;
 			if (movingAverage[i].length > sampleSize) {
@@ -383,7 +385,7 @@ contract IndexAggregator is OApp {
 	}
 
 	function send(
-        uint32 _dstEid,
+		uint32 _dstEid,
 		bytes memory _options,
 		IndexUpdateMessage memory data
 	) external payable returns (MessagingReceipt memory receipt) {

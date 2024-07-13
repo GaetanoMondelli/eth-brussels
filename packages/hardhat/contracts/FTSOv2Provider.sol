@@ -12,7 +12,7 @@ contract FTSOv2DataProvider is IDataProvider {
 	address public token;
 	IFlareContractRegistry internal contractRegistry;
 	IFastUpdater internal ftsoV2;
-    uint256[] public feedIndexes;
+	uint256[] public feedIndexes;
 
 	constructor(address _token, uint256[] memory _feedIndex) {
 		// Flare FTSOv2 configuration
@@ -22,11 +22,11 @@ contract FTSOv2DataProvider is IDataProvider {
 		ftsoV2 = IFastUpdater(
 			contractRegistry.getContractAddressByName("FastUpdater")
 		);
-        token = _token;
-        feedIndexes = _feedIndex;
+		token = _token;
+		feedIndexes = _feedIndex;
 	}
 
-    	function getFtsoV2CurrentFeedValues()
+	function getFtsoV2CurrentFeedValues()
 		public
 		view
 		returns (
@@ -52,13 +52,13 @@ contract FTSOv2DataProvider is IDataProvider {
 		address tokenA
 	) external view override returns (uint256) {
 		require(tokenA == token, "Invalid token address");
-        (uint256[] memory feedValues, , ) = getFtsoV2CurrentFeedValues();
+		(uint256[] memory feedValues, , ) = getFtsoV2CurrentFeedValues();
 		return feedValues[0];
 	}
 
 	function getDataTimestamp() external view override returns (uint256) {
-        (, , uint64 timestamp) = ftsoV2.fetchCurrentFeeds(feedIndexes);
-        return timestamp;
+		(, , uint64 timestamp) = ftsoV2.fetchCurrentFeeds(feedIndexes);
+		return timestamp;
 	}
 
 	function getTags() external view override returns (string[] memory) {
@@ -67,5 +67,9 @@ contract FTSOv2DataProvider is IDataProvider {
 		tags[1] = "chronicle";
 		tags[2] = "price";
 		tags[3] = IERC20(token).name();
+	}
+
+	function getAssetID() external view returns (string memory) {
+		return IERC20(token).name();
 	}
 }

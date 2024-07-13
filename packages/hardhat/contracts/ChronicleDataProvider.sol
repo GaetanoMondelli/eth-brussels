@@ -59,4 +59,8 @@ contract ChronicleDataProvider is IDataProvider {
 		tags[2] = "price";
 		tags[3] = IERC20(token).name();
 	}
+
+	function getAssetID() external view returns (string memory) {
+		return IERC20(token).name();
+	}
 }
