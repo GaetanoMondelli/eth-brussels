@@ -1,0 +1,268 @@
+[
+  {
+    "id": "alameda-research-portfolio",
+    "name": "Alameda Research Portfolio",
+    "market_cap": 476824476867.91156,
+    "market_cap_change_24h": 0.22897901856946085,
+    "content": "Protocols and tokens that Alameda Research have invested in.",
+    "top_3_coins": [
+      "https://assets.coingecko.com/coins/images/279/small/ethereum.png?1696501628",
+      "https://assets.coingecko.com/coins/images/4128/small/solana.png?1696504756",
+      "https://assets.coingecko.com/coins/images/10365/small/near.jpg?1696510367"
+    ],
+    "volume_24h": 16352513728.572765,
+    "updated_at": "2024-05-06T13:05:37.353Z"
+  },
+  {
+    "id": "alleged-sec-securities",
+    "name": "Alleged SEC Securities",
+    "market_cap": 243928481722.1951,
+    "market_cap_change_24h": 1.2196100239537904,
+    "content": "Tokens and cryptocurrencies alleged to be securities by the U.S. Securities and Exchange Commission (SEC). \r\n\r\nNote: The labeling of these cryptocurrencies as securities by the SEC doesn't equate to the legal classification till proven in a court.",
+    "top_3_coins": [
+      "https://assets.coingecko.com/coins/images/825/small/bnb-icon2_2x.png?1696501970",
+      "https://assets.coingecko.com/coins/images/4128/small/solana.png?1696504756",
+      "https://assets.coingecko.com/coins/images/17980/small/ton_symbol.png?1696517498"
+    ],
+    "volume_24h": 6346951640.822356,
+    "updated_at": "2024-05-06T13:05:15.204Z"
+  },
+  {
+    "id": "stablecoins",
+    "name": "Stablecoins",
+    "market_cap": 161269955590.56427,
+    "market_cap_change_24h": 0.17213128717511397,
+    "content": "List of more popular stablecoins.",
+    "top_3_coins": [
+      "https://assets.coingecko.com/coins/images/325/small/Tether.png?1696501661",
+      "https://assets.coingecko.com/coins/images/6319/small/usdc.png?1696506694",
+      "https://assets.coingecko.com/coins/images/9956/small/Badge_Dai.png?1696509996"
+    ],
+    "volume_24h": 51566525638.69527,
+    "updated_at": "2024-05-06T13:05:41.720Z"
+  },
+  {
+    "id": "exchange-based-tokens",
+    "name": "Exchange-based Tokens",
+    "market_cap": 123254492767.1079,
+    "market_cap_change_24h": -0.021256593311548184,
+    "content": "These tokens are normally associated with both centralized and decentralized exchanges and have different purposes. For centralized exchanges, these tokens usually serve to lower trading fees for users. Traders get to enjoy discounted rates when they hold a certain amount of these tokens and even unlock special benefits such as free withdrawals and airdrops. On the other hand, these tokens also function as a governance token for decentralized exchanges. Users can vote on proposals to shape the direction of the protocol based on the number of tokens held. They can also be staked to accrue trading fees.",
+    "top_3_coins": [
+      "https://assets.coingecko.com/coins/images/825/small/bnb-icon2_2x.png?1696501970",
+      "https://assets.coingecko.com/coins/images/12504/small/uni.jpg?1696512319",
+      "https://assets.coingecko.com/coins/images/8418/small/leo-token.png?1696508607"
+    ],
+    "volume_24h": 1710706561.3925414,
+    "updated_at": "2024-05-06T13:05:37.099Z"
+  },
+  {
+    "id": "centralized-exchange-token-cex",
+    "name": "Centralized Exchange (CEX)",
+    "market_cap": 109884292737.07399,
+    "market_cap_change_24h": 0.010920826958547885,
+    "content": "These utility tokens are issued by a centralized exchange and can be used for a variety of purposes. Although holders are not able to exercise governance, they still carry many other benefits. Based on the amount of tokens held, users on the exchange get to enjoy discounted trading fees. Additionally, stakers can gain access to exclusive token sales on the exchange, where their allocation is also determined based on the number of exchange tokens staked.",
+    "top_3_coins": [
+      "https://assets.coingecko.com/coins/images/825/small/bnb-icon2_2x.png?1696501970",
+      "https://assets.coingecko.com/coins/images/8418/small/leo-token.png?1696508607",
+      "https://assets.coingecko.com/coins/images/7310/small/cro_token_logo.png?1696507599"
+    ],
+    "volume_24h": 993936026.3352001,
+    "updated_at": "2024-05-06T13:05:51.764Z"
+  },
+  {
+    "id": "decentralized-finance-defi",
+    "name": "Decentralized Finance (DeFi)",
+    "market_cap": 92406841329.7887,
+    "market_cap_change_24h": 0.5468379899441673,
+    "content": "",
+    "top_3_coins": [
+      "https://assets.coingecko.com/coins/images/13442/small/steth_logo.png?1696513206",
+      "https://assets.coingecko.com/coins/images/877/small/chainlink-new-logo.png?1696502009",
+      "https://assets.coingecko.com/coins/images/12504/small/uni.jpg?1696512319"
+    ],
+    "volume_24h": 4772526649.310029,
+    "updated_at": "2024-05-06T13:05:35.246Z"
+  },
+  {
+    "id": "meme-token",
+    "name": "Meme",
+    "market_cap": 55752211760.92382,
+    "market_cap_change_24h": -2.610785568948177,
+    "content": "Meme coins derive their relevance from memes, thriving on hype and picking up momentum as the community grows.",
+    "top_3_coins": [
+      "https://assets.coingecko.com/coins/images/5/small/dogecoin.png?1696501409",
+      "https://assets.coingecko.com/coins/images/11939/small/shiba.png?1696511800",
+      "https://assets.coingecko.com/coins/images/29850/small/pepe-token.jpeg?1696528776"
+    ],
+    "volume_24h": 5271351129.842726,
+    "updated_at": "2024-05-06T13:05:57.093Z"
+  },
+  {
+    "id": "dragonfly-capital-portfolio",
+    "name": "DragonFly Capital Portfolio",
+    "market_cap": 53760896153.18674,
+    "market_cap_change_24h": 1.6250328950631998,
+    "content": "Protocols and tokens that DragonFly Capital have invested in.",
+    "top_3_coins": [
+      "https://assets.coingecko.com/coins/images/12559/small/Avalanche_Circle_RedWhite_Trans.png?1696512369",
+      "https://assets.coingecko.com/coins/images/10365/small/near.jpg?1696510367",
+      "https://assets.coingecko.com/coins/images/4713/small/polygon.png?1698233745"
+    ],
+    "volume_24h": 2797570274.6280704,
+    "updated_at": "2024-05-06T13:05:41.630Z"
+  },
+  {
+    "id": "non-fungible-tokens-nft",
+    "name": "NFT",
+    "market_cap": 42615349318.30635,
+    "market_cap_change_24h": 2.992501967669054,
+    "content": "Non-fungible tokens, or NFTs, are collectible elements within the Ethereum blockchain that usually follow the ERC-721 or ERC-1155 standard. They represent something unique and therefore are not mutually interchangeable. In other words, no non-fungible token is the same. NFTs take advantage of innovative smart contract technology to store and record unique information on the blockchain, which means that whenever an NFT is created, only one of it verifiably exists. NFT creators can also encrypt details such as rich metadata or secure file links allowing people to create all sorts of digital assets which are verifiable such as videos and songs. With NFTs, one can digitally certify that an asset is authentic.",
+    "top_3_coins": [
+      "https://assets.coingecko.com/coins/images/14495/small/Internet_Computer_logo.png?1696514180",
+      "https://assets.coingecko.com/coins/images/5681/small/Fetch.jpg?1696506140",
+      "https://assets.coingecko.com/coins/images/11636/small/rndr.png?1696511529"
+    ],
+    "volume_24h": 2646909265.1438303,
+    "updated_at": "2024-05-06T13:05:49.479Z"
+  },
+  {
+    "id": "eth-2-0-staking",
+    "name": "Eth 2.0 Staking",
+    "market_cap": 30252054204.97117,
+    "market_cap_change_24h": -0.3927923779412249,
+    "content": "In Ethereum 2.0, the consensus algorithm is transitioned from Proof-of-Work to Proof-of-Stake, allowing users to stake their Ether and validate transactions in exchange for staking rewards. When you participate in ETH 2.0 staking solutions, you will usually receive a token which represents your staked assets but are also liquid and can be used in other protocols. Here, you can find different tokens which represent staked Ether from various protocols.",
+    "top_3_coins": [
+      "https://assets.coingecko.com/coins/images/13442/small/steth_logo.png?1696513206",
+      "https://assets.coingecko.com/coins/images/27008/small/cbeth.png?1709186989",
+      "https://assets.coingecko.com/coins/images/28285/small/sfrxETH_icon.png?1696527285"
+    ],
+    "volume_24h": 81669131.86490722,
+    "updated_at": "2024-05-06T13:05:45.170Z"
+  },
+  {
+    "id": "depin",
+    "name": "DePIN",
+    "market_cap": 28336016286.433876,
+    "market_cap_change_24h": 4.887345150471954,
+    "content": "DePIN refers to Decentralized Physical Infrastructure Networks which utilize blockchain and tokenized incentives to build real-world infrastructure across areas like wireless networks, storage, geolocation, transportation and energy.",
+    "top_3_coins": [
+      "https://assets.coingecko.com/coins/images/11636/small/rndr.png?1696511529",
+      "https://assets.coingecko.com/coins/images/12817/small/filecoin.png?1696512609",
+      "https://assets.coingecko.com/coins/images/13397/small/Graph_Token.png?1696513159"
+    ],
+    "volume_24h": 1777329484.6076758,
+    "updated_at": "2024-05-06T13:05:06.416Z"
+  },
+  {
+    "id": "artificial-intelligence",
+    "name": "Artificial Intelligence (AI)",
+    "market_cap": 27199090401.73666,
+    "market_cap_change_24h": 7.458217068273834,
+    "content": "Artificial Intelligence (AI) tokens are cryptocurrencies that power AI-related projects, such as AI-powered portfolio management, image generation, path finding, and more. ",
+    "top_3_coins": [
+      "https://assets.coingecko.com/coins/images/5681/small/Fetch.jpg?1696506140",
+      "https://assets.coingecko.com/coins/images/11636/small/rndr.png?1696511529",
+      "https://assets.coingecko.com/coins/images/28452/small/ARUsPeNQ_400x400.jpeg?1696527447"
+    ],
+    "volume_24h": 2199660355.954554,
+    "updated_at": "2024-05-06T13:05:29.393Z"
+  },
+  {
+    "id": "governance",
+    "name": "Governance",
+    "market_cap": 27064891587.60192,
+    "market_cap_change_24h": -0.2535137975793425,
+    "content": "Governance tokens are used to determine the direction or decisions taken by a protocol. A protocol’s team or even its community members can create proposals to introduce new features or even change the terms of governance itself. Once a proposal has been discussed and further fleshed out, token holders can vote on the decision to be made. The weight of your votes is determined based on the number of governance tokens held. ",
+    "top_3_coins": [
+      "https://assets.coingecko.com/coins/images/14495/small/Internet_Computer_logo.png?1696514180",
+      "https://assets.coingecko.com/coins/images/12504/small/uni.jpg?1696512319",
+      "https://assets.coingecko.com/coins/images/1364/small/Mark_Maker.png?1696502423"
+    ],
+    "volume_24h": 1117733006.9174755,
+    "updated_at": "2024-05-06T13:05:43.016Z"
+  },
+  {
+    "id": "layer-2",
+    "name": "Layer 2 (L2)",
+    "market_cap": 26469929241.217052,
+    "market_cap_change_24h": -0.7348717918927411,
+    "content": "Layer 2 based protocol are designed to help scale the Ethereum network by moving transactions off-chain and only settling them on the main chain when necessary. This helps to reduce congestion on the main chain and lower transaction fees. Layer 2 solutions can be used for a variety of purposes, such as decentralized exchanges, gaming, and more.",
+    "top_3_coins": [
+      "https://assets.coingecko.com/coins/images/4713/small/polygon.png?1698233745",
+      "https://assets.coingecko.com/coins/images/30980/small/token-logo.png?1696529819",
+      "https://assets.coingecko.com/coins/images/2069/small/Stacks_Logo_png.png?1709979332"
+    ],
+    "volume_24h": 1517983213.2299976,
+    "updated_at": "2024-05-06T13:06:00.515Z"
+  },
+  {
+    "id": "paradigm-portfolio",
+    "name": "Paradigm Portfolio",
+    "market_cap": 25609062242.076347,
+    "market_cap_change_24h": 0.47514793035382497,
+    "content": "Protocols and tokens that Paradigm have invested in.",
+    "top_3_coins": [
+      "https://assets.coingecko.com/coins/images/12504/small/uni.jpg?1696512319",
+      "https://assets.coingecko.com/coins/images/1481/small/cosmos_hub.png?1696502525",
+      "https://assets.coingecko.com/coins/images/25244/small/Optimism.png?1696524385"
+    ],
+    "volume_24h": 1180664896.419923,
+    "updated_at": "2024-05-06T13:05:23.055Z"
+  },
+  {
+    "id": "zero-knowledge-zk",
+    "name": "Zero Knowledge (ZK)",
+    "market_cap": 21549625682.480934,
+    "market_cap_change_24h": 2.4159801486030776,
+    "content": "Zero-knowledge proof or Zero-knowledge protocol is a method by which one party (the prover) can prove to another party (the verifier) that a given statement is true while the prover avoids conveying any additional information apart from the fact that the statement is indeed true.\r\n\r\nThis category tracks cryptocurrency that utilises Zero Knowledge implementation to execute transactions, which may include smart contract execution, value transfer, and others.",
+    "top_3_coins": [
+      "https://assets.coingecko.com/coins/images/10365/small/near.jpg?1696510367",
+      "https://assets.coingecko.com/coins/images/4713/small/polygon.png?1698233745",
+      "https://assets.coingecko.com/coins/images/17233/small/immutableX-symbol-BLK-RGB.png?1696516787"
+    ],
+    "volume_24h": 1089705253.5681162,
+    "updated_at": "2024-05-06T13:06:02.288Z"
+  },
+  {
+    "id": "gaming",
+    "name": "Gaming (GameFi)",
+    "market_cap": 21475304481.621746,
+    "market_cap_change_24h": 1.3048047143731674,
+    "content": "",
+    "top_3_coins": [
+      "https://assets.coingecko.com/coins/images/17233/small/immutableX-symbol-BLK-RGB.png?1696516787",
+      "https://assets.coingecko.com/coins/images/16746/small/PNG_image.png?1696516318",
+      "https://assets.coingecko.com/coins/images/12493/small/GALA_token_image_-_200PNG.png?1709725869"
+    ],
+    "volume_24h": 1295681475.7854147,
+    "updated_at": "2024-05-06T13:05:40.689Z"
+  },
+  {
+    "id": "storage",
+    "name": "Storage",
+    "market_cap": 16532046948.287943,
+    "market_cap_change_24h": 1.9517165929711626,
+    "content": "Storage protocols allow users to store their data on the blockchain network in a decentralized manner. This negates the need for a centralized storage host such as Amazon, OneDrive, DropBox, and others. This removes the issue of a single point of failure. Decentralized servers make use of independent nodes which in turn use spare storage space on computers. Users are able to rent out their spare storage on  In exchange for storage space, users are able to use a storage protocol’s token to pay for the service.",
+    "top_3_coins": [
+      "https://assets.coingecko.com/coins/images/14495/small/Internet_Computer_logo.png?1696514180",
+      "https://assets.coingecko.com/coins/images/12817/small/filecoin.png?1696512609",
+      "https://assets.coingecko.com/coins/images/4343/small/oRt6SiEN_400x400.jpg?1696504946"
+    ],
+    "volume_24h": 794593333.8609357,
+    "updated_at": "2024-05-06T13:05:34.134Z"
+  },
+  {
+    "id": "defi-pulse-index-dpi",
+    "name": "Defi Pulse Index (DPI)",
+    "market_cap": 13572312917.074663,
+    "market_cap_change_24h": -0.7945499514929301,
+    "content": "The DeFi Pulse Index (DPI) is a capitalization-weighted index that tracks the performance of some popular DeFi protocols on Ethereum.",
+    "top_3_coins": [
+      "https://assets.coingecko.com/coins/images/12504/small/uni.jpg?1696512319",
+      "https://assets.coingecko.com/coins/images/1364/small/Mark_Maker.png?1696502423",
+      "https://assets.coingecko.com/coins/images/13573/small/Lido_DAO.png?1696513326"
+    ],
+    "volume_24h": 2022811121.3579855,
+    "updated_at": "2024-05-06T13:05:12.022Z"
+  }
+]
