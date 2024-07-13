@@ -12,17 +12,20 @@ contract UniswapV4LiquidityProvider is ILiquidityProvider, IDataProvider {
 	FixedLiquidityPriceOracle public v4HookPriceOracle;
 	PoolKey[] public poolKeysForSameAsset;
 	address token;
+	uint32 chainId;
 
 	constructor(
 		address _v4HookPriceOracle,
 		PoolKey[] memory _poolKeysForSameAsset,
-		address _token
+		address _token,
+		uint32 _chainId
 	) {
 		v4HookPriceOracle = FixedLiquidityPriceOracle(_v4HookPriceOracle);
 		for (uint256 i = 0; i < _poolKeysForSameAsset.length; i++) {
 			poolKeysForSameAsset.push(_poolKeysForSameAsset[i]);
 		}
 		token = _token; //same as currency0
+		chainId = _chainId;
 	}
 
 	function getTokenLiquidity(
@@ -94,10 +97,8 @@ contract UniswapV4LiquidityProvider is ILiquidityProvider, IDataProvider {
 			);
 	}
 
-	function getMetricData(
-		address tokenA
-	) external view override returns (uint256) {
-		return getTokenLiquidity(tokenA);
+	function getMetricData() external view override returns (uint256) {
+		return getTokenLiquidity(token);
 	}
 
 	function getTags() external view override returns (string[] memory) {
@@ -113,7 +114,15 @@ contract UniswapV4LiquidityProvider is ILiquidityProvider, IDataProvider {
 		return block.timestamp;
 	}
 
-	function getAssetID() external view returns (string memory) {
-		return IERC20(token).name();
+	function getDataType() external pure returns (DataTypes) {
+		return DataTypes.LIQUIDITY;
+	}
+
+	function getAssetAddress() external view override returns (address) {
+		return token;
+	}
+
+	function getChainId() external view override returns (uint32) {
+		return chainId;
 	}
 }

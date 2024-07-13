@@ -4,22 +4,26 @@ pragma solidity ^0.8.0;
 import "./IUniswapV3Factory.sol";
 import "./IUniswapV3Pool.sol";
 import "./IDataProvider.sol";
+import { IERC20 } from "./IERC20.sol";
 
 contract UniswapV3PriceProvider is IDataProvider {
 	IUniswapV3Factory public factory;
 	uint24[] public feeTiers = [500, 3000, 10000]; // Example fee tiers: 0.05%, 0.3%, 1% these are Uniswap V3 standards
 	address[] public comparisonTokens;
 	uint256 public mockPrice = 1000;
-	string public tokenName;
+	address public token;
+	uint32 public chainId;
 
 	constructor(
 		address _factory,
 		address[] memory _comparisonTokens,
-		string memory _tokenName
+		address _token,
+		uint32 _chainId
 	) {
 		factory = IUniswapV3Factory(_factory);
 		comparisonTokens = _comparisonTokens;
-		tokenName = _tokenName;
+		token = _token;
+		chainId = _chainId;
 	}
 
 	function getPoolsForToken(
@@ -72,13 +76,15 @@ contract UniswapV3PriceProvider is IDataProvider {
 	}
 
 	function getLabel() external view override returns (string memory) {
-		return string(abi.encodePacked("UniswapV3PriceProvider", tokenName));
+		return
+			string(
+				abi.encodePacked("UniswapV3PriceProvider", IERC20(token).name())
+			);
 	}
 
 	function getMetricData(
-		address tokenA
 	) external view override returns (uint256) {
-		return getPrice(tokenA);
+		return getPrice(token);
 	}
 
 	function getDataTimestamp() external view override returns (uint256) {
@@ -90,11 +96,19 @@ contract UniswapV3PriceProvider is IDataProvider {
 		tags[0] = "onchain";
 		tags[1] = "uniswap";
 		tags[2] = "price";
-		tags[3] = tokenName;
+		tags[3] = IERC20(token).name();
 		return tags;
 	}
 
-	function getAssetID() external view returns (string memory) {
-		return tokenName;
+	function getDataType() external pure returns (DataTypes) {
+		return DataTypes.PRICE;
+	}
+
+	function getAssetAddress() external view override returns (address) {
+		return token;
+	}
+
+	function getChainId() external view override returns (uint32) {
+		return chainId;
 	}
 }

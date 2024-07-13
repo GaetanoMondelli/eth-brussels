@@ -5,10 +5,12 @@ import "./IDataProvider.sol";
 import { IERC20 } from "./IERC20.sol";
 
 contract TotalSupplyProvider is IDataProvider {
-	IERC20 public token;
+	address public token;
+	uint32 public chainId;
 
-	constructor(IERC20 _token) {
+	constructor(address _token, uint32 _chainId) {
 		token = _token;
+		chainId = _chainId;
 	}
 
 	function getLabel() external view override returns (string memory) {
@@ -18,11 +20,8 @@ contract TotalSupplyProvider is IDataProvider {
 			);
 	}
 
-	function getMetricData(
-		address tokenA
-	) external view override returns (uint256) {
-		require(tokenA == address(token), "INVALID_TOKEN");
-		return token.totalSupply();
+	function getMetricData() external view override returns (uint256) {
+		return IERC20(token).totalSupply();
 	}
 
 	function getTags() external view override returns (string[] memory) {
@@ -37,7 +36,15 @@ contract TotalSupplyProvider is IDataProvider {
 		return block.timestamp;
 	}
 
-	function getAssetID() external view returns (string memory) {
-		return IERC20(token).name();
+	function getDataType() external pure returns (DataTypes) {
+		return DataTypes.TOTAL_SUPPLY;
+	}
+
+	function getAssetAddress() external view override returns (address) {
+		return token;
+	}
+
+	function getChainId() external view override returns (uint32) {
+		return chainId;
 	}
 }

@@ -13,8 +13,9 @@ contract FTSOv2DataProvider is IDataProvider {
 	IFlareContractRegistry internal contractRegistry;
 	IFastUpdater internal ftsoV2;
 	uint256[] public feedIndexes;
+	uint32 internal chainId;
 
-	constructor(address _token, uint256[] memory _feedIndex) {
+	constructor(address _token, uint256[] memory _feedIndex, uint32 _chainId) {
 		// Flare FTSOv2 configuration
 		contractRegistry = IFlareContractRegistry(
 			0xaD67FE66660Fb8dFE9d6b1b4240d8650e30F6019
@@ -24,6 +25,7 @@ contract FTSOv2DataProvider is IDataProvider {
 		);
 		token = _token;
 		feedIndexes = _feedIndex;
+		chainId = _chainId;
 	}
 
 	function getFtsoV2CurrentFeedValues()
@@ -49,9 +51,7 @@ contract FTSOv2DataProvider is IDataProvider {
 	}
 
 	function getMetricData(
-		address tokenA
 	) external view override returns (uint256) {
-		require(tokenA == token, "Invalid token address");
 		(uint256[] memory feedValues, , ) = getFtsoV2CurrentFeedValues();
 		return feedValues[0];
 	}
@@ -67,9 +67,18 @@ contract FTSOv2DataProvider is IDataProvider {
 		tags[1] = "chronicle";
 		tags[2] = "price";
 		tags[3] = IERC20(token).name();
+		return tags;
 	}
 
-	function getAssetID() external view returns (string memory) {
-		return IERC20(token).name();
+	function getDataType() external pure returns (DataTypes) {
+		return DataTypes.PRICE;
+	}
+
+	function getAssetAddress() external view override returns (address) {
+		return token;
+	}
+	
+	function getChainId() external view override returns (uint32) {
+	return chainId; 
 	}
 }

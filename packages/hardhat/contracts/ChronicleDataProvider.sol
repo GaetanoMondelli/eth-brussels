@@ -16,15 +16,18 @@ contract ChronicleDataProvider is IDataProvider {
 	/// @notice The Chronicle oracle to read from.
 	IChronicle public chronicle =
 		IChronicle(address(0xdd6D76262Fd7BdDe428dcfCd94386EbAe0151603));
+	/// @notice The chain ID of the network.
+	uint32 public chainId;
 
 	/// @notice The SelfKisser granting access to Chronicle oracles.
 	ISelfKisser public selfKisser =
 		ISelfKisser(address(0x0Dcc19657007713483A5cA76e6A7bbe5f56EA37d));
 
-	constructor(address _token) {
+	constructor(address _token, uint32 _chainId) {
 		// Note to add address(this) to chronicle oracle's whitelist.
 		// This allows the contract to read from the chronicle oracle.
 		selfKisser.selfKiss(address(chronicle));
+		chainId = _chainId;
 		token = _token;
 	}
 
@@ -60,7 +63,13 @@ contract ChronicleDataProvider is IDataProvider {
 		tags[3] = IERC20(token).name();
 	}
 
-	function getAssetID() external view returns (string memory) {
-		return IERC20(token).name();
+	function getDataType() external pure returns (DataTypes) {
+		return DataTypes.PRICE;
 	}
+
+	function getAssetAddress() external view override returns (address) {
+		return token;
+	} 
+	
+	function getChainId() external view override returns (uint32) { return chainId; }
 }
