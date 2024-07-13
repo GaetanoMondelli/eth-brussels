@@ -43,9 +43,7 @@ contract ChronicleDataProvider is IDataProvider {
 	}
 
 	function getMetricData(
-		address tokenA
 	) external view override returns (uint256) {
-		require(tokenA == token, "Invalid token address");
 		(uint256 val, ) = chronicle.readWithAge();
 		return val;
 	}
@@ -69,7 +67,10 @@ contract ChronicleDataProvider is IDataProvider {
 
 	function getAssetAddress() external view override returns (address) {
 		return token;
-	} 
-	
-	function getChainId() external view override returns (uint32) { return chainId; }
+	}
+
+	function getChainId() external view override returns (uint32) {
+		return chainId;
+	}
+
 }
