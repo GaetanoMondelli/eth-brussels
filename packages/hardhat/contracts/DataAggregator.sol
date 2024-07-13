@@ -61,7 +61,6 @@ contract DataAggregator is OApp {
 
 	constructor(
 		TokenInfo[] memory _tokenInfo,
-		address _liquidityManager,
 		address _endpoint,
 		address[] memory _dataProviders,
 		AggregatorParams memory _aggregatorParams
