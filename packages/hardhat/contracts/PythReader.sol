@@ -1,44 +1,48 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.13;
- 
-// import { console2 } from "forge-std/Test.sol";
+
 import "@pythnetwork/pyth-sdk-solidity/IPyth.sol";
- 
-contract MyFirstPythContract {
-  IPyth pyth;
-  bytes32 ethUsdPriceId;
- 
-  constructor(address _pyth, bytes32 _ethUsdPriceId) {
-    pyth = IPyth(_pyth);
-    ethUsdPriceId = _ethUsdPriceId;
+import "./IDataProvider.sol";
+import { IERC20 } from "./IERC20.sol";
+
+contract PythDataProvider is IDataProvider {
+	IPyth pyth;
+	bytes32 tokenToUsdPriceId;
+	address token;
+
+	constructor(address _pyth, bytes32 _priceId, address _token) {
+		pyth = IPyth(_pyth);
+		tokenToUsdPriceId = _priceId;
+    token = _token;
+	}
+
+	function eighteenDecimalsPrice() public view returns (uint256) {
+		PythStructs.Price memory price = pyth.getPrice(tokenToUsdPriceId);
+
+		uint pricedecimals = (uint(uint64(price.price)) * (10 ** 18)) /
+			(10 ** uint8(uint32(-1 * price.expo)));
+		return pricedecimals;
+	}
+
+	error InsufficientFee();
+
+	function getLabel() external view override returns (string memory) {
+		return string(abi.encodePacked("pricePyth", IERC20(token).name() ));
+	}
+
+	function getMetricData(
+		address tokenA
+	) external view override returns (uint256) {
+    require(tokenA == token, "Invalid token address");
+    return eighteenDecimalsPrice();
   }
 
-  function mint() public payable {
-    PythStructs.Price memory price = pyth.getPrice(ethUsdPriceId);
- 
-    uint ethPrice18Decimals = (uint(uint64(price.price)) * (10 ** 18)) /
-      (10 ** uint8(uint32(-1 * price.expo)));
-    uint oneDollarInWei = ((10 ** 18) * (10 ** 18)) / ethPrice18Decimals;
- 
-    // console2.log("required payment in wei");
-    // console2.log(oneDollarInWei);
- 
-    if (msg.value >= oneDollarInWei) {
-      // User paid enough money.
-      // TODO: mint the NFT here
-    } else {
-      revert InsufficientFee();
-    }
+	function getTags() external view override returns (string[] memory) {
+    string[] memory tags = new string[](4);
+    tags[0] = "partner";
+    tags[1] = "pyth";
+    tags[2] = "price";
+    tags[3] = IERC20(token).name();
+    return tags;
   }
-
-   function updateAndMint(bytes[] calldata pythPriceUpdate) external payable {
-    uint updateFee = pyth.getUpdateFee(pythPriceUpdate);
-    pyth.updatePriceFeeds{ value: updateFee }(pythPriceUpdate);
- 
-    mint();
-  }
- 
-  // Error raised if the payment is not sufficient
-  error InsufficientFee();
 }
- 
