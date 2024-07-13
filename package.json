@@ -43,7 +43,11 @@
     "node": ">=18.17.0"
   },
   "dependencies": {
+    "@ant-design/icons": "^5.3.7",
     "@pythnetwork/pyth-sdk-solidity": "^3.1.0",
+    "antd": "^5.19.1",
+    "chart.js": "^4.4.3",
+    "react-chartjs-2": "^5.2.0",
     "solmate": "^6.2.0"
   }
 }
