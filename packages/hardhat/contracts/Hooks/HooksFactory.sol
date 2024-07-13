@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.8.19;
 import "../MyHook.sol";
-import { PriceOracle } from "../PriceOracle.sol";
+import { FixedLiquidityPriceOracle } from "../FixedLiquidityPriceOracle.sol";
 import { IPoolManager } from "../Uniswap/V4-Core/interfaces/IPoolManager.sol";
 import "hardhat/console.sol";
 
@@ -12,7 +12,7 @@ contract UniswapHooksFactory {
 		console.log("deploying hooks...");
 		// hooks.push(address(new MyHook{ salt: salt }(poolManager)));
 		hooks.push(
-			address(new PriceOracle{ salt: salt }(IPoolManager(poolManager)))
+			address(new FixedLiquidityPriceOracle{ salt: salt }(IPoolManager(poolManager)))
 		);
 	}
 
@@ -23,7 +23,7 @@ contract UniswapHooksFactory {
 	) external view returns (address) {
 		//Creation code + constructor argument
 		bytes32 bytecodeHash = keccak256(
-			abi.encodePacked(type(PriceOracle).creationCode, abi.encode(poolManager))
+			abi.encodePacked(type(FixedLiquidityPriceOracle).creationCode, abi.encode(poolManager))
 		);
 		bytes32 hash = keccak256(
 			abi.encodePacked(bytes1(0xff), address(this), salt, bytecodeHash)
