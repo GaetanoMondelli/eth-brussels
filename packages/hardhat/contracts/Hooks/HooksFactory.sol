@@ -10,7 +10,7 @@ contract UniswapHooksFactory {
 
 	function deploy(address poolManager, bytes32 salt) external {
 		console.log("deploying hooks...");
-		hooks.push(address(new MyHook{ salt: salt }(poolManager)));
+		// hooks.push(address(new MyHook{ salt: salt }(poolManager)));
 		hooks.push(
 			address(new PriceOracle{ salt: salt }(IPoolManager(poolManager)))
 		);
@@ -23,7 +23,7 @@ contract UniswapHooksFactory {
 	) external view returns (address) {
 		//Creation code + constructor argument
 		bytes32 bytecodeHash = keccak256(
-			abi.encodePacked(type(MyHook).creationCode, abi.encode(poolManager))
+			abi.encodePacked(type(PriceOracle).creationCode, abi.encode(poolManager))
 		);
 		bytes32 hash = keccak256(
 			abi.encodePacked(bytes1(0xff), address(this), salt, bytecodeHash)
