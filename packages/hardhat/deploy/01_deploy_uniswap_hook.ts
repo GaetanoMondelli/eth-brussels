@@ -73,12 +73,12 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
     await hookFactory.deploy(poolManagerAddress, salt as any);
     console.log("Hooks deployed with address:", finalAddress);
 
-    await deploy("MyHook", {
-      from: deployer,
-      // Contract constructor arguments
-      args: [sepoliaPoolManager],
-      log: true,
-    });
+    // await deploy("MyHook", {
+    //   from: deployer,
+    //   // Contract constructor arguments
+    //   args: [sepoliaPoolManager],
+    //   log: true,
+    // });
   }
 };
 
