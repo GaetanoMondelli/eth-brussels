@@ -47,16 +47,16 @@ contract ChronicleDataProvider is IDataProvider {
 		return val;
 	}
 
+	function getDataTimestamp() external view override returns (uint256) {
+		(, uint256 age) = chronicle.readWithAge();
+		return age;
+	}
+
 	function getTags() external view override returns (string[] memory) {
 		string[] memory tags = new string[](4);
 		tags[0] = "partner";
 		tags[1] = "chronicle";
 		tags[2] = "price";
 		tags[3] = IERC20(token).name();
-	}
-
-	function getDataTimestamp() external view override returns (uint256) {
-		(, uint256 age) = chronicle.readWithAge();
-		return age;
 	}
 }

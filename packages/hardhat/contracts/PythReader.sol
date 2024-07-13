@@ -13,7 +13,7 @@ contract PythDataProvider is IDataProvider {
 	constructor(address _pyth, bytes32 _priceId, address _token) {
 		pyth = IPyth(_pyth);
 		tokenToUsdPriceId = _priceId;
-    token = _token;
+		token = _token;
 	}
 
 	function eighteenDecimalsPrice() public view returns (uint256) {
@@ -27,22 +27,26 @@ contract PythDataProvider is IDataProvider {
 	error InsufficientFee();
 
 	function getLabel() external view override returns (string memory) {
-		return string(abi.encodePacked("pricePyth", IERC20(token).name() ));
+		return string(abi.encodePacked("pricePyth", IERC20(token).name()));
 	}
 
 	function getMetricData(
 		address tokenA
 	) external view override returns (uint256) {
-    require(tokenA == token, "Invalid token address");
-    return eighteenDecimalsPrice();
-  }
+		require(tokenA == token, "Invalid token address");
+		return eighteenDecimalsPrice();
+	}
+
+	function getDataTimestamp() external view override returns (uint256) {
+		return block.timestamp;
+	}
 
 	function getTags() external view override returns (string[] memory) {
-    string[] memory tags = new string[](4);
-    tags[0] = "partner";
-    tags[1] = "pyth";
-    tags[2] = "price";
-    tags[3] = IERC20(token).name();
-    return tags;
-  }
+		string[] memory tags = new string[](4);
+		tags[0] = "partner";
+		tags[1] = "pyth";
+		tags[2] = "price";
+		tags[3] = IERC20(token).name();
+		return tags;
+	}
 }

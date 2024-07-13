@@ -78,6 +78,10 @@ contract UniswapV3LiquidityProvider is ILiquidityProvider, IDataProvider {
 		}
 	}
 
+	function getDataTimestamp() external view override returns (uint256) {
+		return block.timestamp;
+	}
+
 	function getLabel() external view override returns (string memory) {
 		return string(abi.encodePacked("UniswapV3LiquidityProvider", tokenName));
 	}

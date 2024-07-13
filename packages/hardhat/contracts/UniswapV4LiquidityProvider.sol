@@ -85,7 +85,13 @@ contract UniswapV4LiquidityProvider is ILiquidityProvider, IDataProvider {
 	}
 
 	function getLabel() external view override returns (string memory) {
-		return string(abi.encodePacked("UniswapV4LiquidityProvider", IERC20(token).name()));
+		return
+			string(
+				abi.encodePacked(
+					"UniswapV4LiquidityProvider",
+					IERC20(token).name()
+				)
+			);
 	}
 
 	function getMetricData(
@@ -101,5 +107,9 @@ contract UniswapV4LiquidityProvider is ILiquidityProvider, IDataProvider {
 		tags[2] = "liquidity";
 		tags[3] = IERC20(token).name();
 		return tags;
+	}
+
+	function getDataTimestamp() external view override returns (uint256) {
+		return block.timestamp;
 	}
 }

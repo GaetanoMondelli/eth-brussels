@@ -12,7 +12,11 @@ contract UniswapV3PriceProvider is IDataProvider {
 	uint256 public mockPrice = 1000;
 	string public tokenName;
 
-	constructor(address _factory, address[] memory _comparisonTokens, string memory _tokenName) {
+	constructor(
+		address _factory,
+		address[] memory _comparisonTokens,
+		string memory _tokenName
+	) {
 		factory = IUniswapV3Factory(_factory);
 		comparisonTokens = _comparisonTokens;
 		tokenName = _tokenName;
@@ -49,6 +53,7 @@ contract UniswapV3PriceProvider is IDataProvider {
 
 		return pools;
 	}
+
 	function getPrice(
 		address token
 	) public view returns (uint256 averagePrice) {
@@ -74,6 +79,10 @@ contract UniswapV3PriceProvider is IDataProvider {
 		address tokenA
 	) external view override returns (uint256) {
 		return getPrice(tokenA);
+	}
+
+	function getDataTimestamp() external view override returns (uint256) {
+		return block.timestamp;
 	}
 
 	function getTags() external view override returns (string[] memory) {

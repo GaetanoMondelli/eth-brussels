@@ -5,7 +5,7 @@ import { FixedLiquidityPriceOracle, Oracle } from "./FixedLiquidityPriceOracle.s
 import { PoolId, PoolKey } from "./Uniswap/V4-Core/types/PoolId.sol";
 import { TickMath } from "./Uniswap/V4-Core/libraries/TickMath.sol";
 import "./IDataProvider.sol";
-import {IERC20} from "./IERC20.sol";
+import { IERC20 } from "./IERC20.sol";
 
 contract UniswapV4PriceProvider is IDataProvider {
 	FixedLiquidityPriceOracle public v4HookPriceOracle;
@@ -17,9 +17,7 @@ contract UniswapV4PriceProvider is IDataProvider {
 		PoolKey[] memory _poolKeysForSameAsset,
 		address _token
 	) {
-		v4HookPriceOracle = FixedLiquidityPriceOracle(
-			_v4HookPriceOracle
-		);
+		v4HookPriceOracle = FixedLiquidityPriceOracle(_v4HookPriceOracle);
 		for (uint256 i = 0; i < _poolKeysForSameAsset.length; i++) {
 			poolKeysForSameAsset.push(_poolKeysForSameAsset[i]);
 		}
@@ -68,7 +66,10 @@ contract UniswapV4PriceProvider is IDataProvider {
 	}
 
 	function getLabel() external view override returns (string memory) {
-		return string(abi.encodePacked("UniswapV4PriceProvider", IERC20(token).name()));
+		return
+			string(
+				abi.encodePacked("UniswapV4PriceProvider", IERC20(token).name())
+			);
 	}
 
 	function getMetricData(
@@ -84,5 +85,9 @@ contract UniswapV4PriceProvider is IDataProvider {
 		tags[1] = "uniswapv4";
 		tags[2] = "price";
 		return tags;
+	}
+
+	function getDataTimestamp() external view override returns (uint256) {
+		return block.timestamp;
 	}
 }
