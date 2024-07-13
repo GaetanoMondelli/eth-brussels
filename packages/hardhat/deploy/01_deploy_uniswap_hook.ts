@@ -37,11 +37,11 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
       log: true,
     });
 
-    const uniswapInteract = await hre.ethers.getContract("UniswapInteract", deployer);
+    // const uniswapInteract = await hre.ethers.getContract("UniswapInteract", deployer);
 
     await deploy("UniswapHooksFactory", {
       from: deployer,
-      args: args,
+      args: [poolManagerAddress],
       log: true,
     });
 
@@ -58,7 +58,7 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
       //console.log(salt);
       salt = zeroPadValue(salt, 32);
 
-      let expectedAddress = await hookFactory.getPrecomputedHookAddress(deployer, poolManager.target, salt);
+      let expectedAddress = await hookFactory.getPrecomputedHookAddress(deployer, poolManagerAddress, salt);
       finalAddress = expectedAddress;
       //console.log(i, "Address:", expectedAddress);
       expectedAddress = expectedAddress;
@@ -69,6 +69,9 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
         break;
       }
     }
+
+    await hookFactory.deploy(poolManagerAddress, salt as any);
+    console.log("Hooks deployed with address:", finalAddress);
 
     await deploy("MyHook", {
       from: deployer,
@@ -81,6 +84,4 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
 
 export default deployYourContract;
 
-// Tags are useful if you have multiple deploy files and only want to run one of them.
-// e.g. yarn deploy --tags YourContract
-deployYourContract.tags = ["Hook"];
+deployYourContract.tags = ["uniswap-hooks"];
