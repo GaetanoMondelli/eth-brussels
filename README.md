@@ -142,12 +142,12 @@ Users can see the remaining funds and determine if there is enough runway to mai
 
 ### Uniswap Foundation
 
-The Multi-Chain Data Aggregator collects data about token liquidity using Uniswap V3 pools, highlighting vulnerabilities where pool managers can manipulate liquidity by adding or removing it, thus affecting observed values. A better solution is presented using Uniswap V4 hooks, which fix the initial liquidity by reverting any attempts to add or remove liquidity. This approach ensures accurate data by collecting new observation states (via Uniswap Oracle) whenever a swap occurs.
+The Multi-Chain Data Aggregator initially collected data about token liquidity using Uniswap V3 pools. Unfortunately we realise that pool managers can manipulate liquidity by adding or removing it, affecting observed values. A better solution uses Uniswap V4 hooks, which prevent changes to the initial liquidity by reverting any attempts to add or remove liquidity. This approach ensures accurate data by creating new observation states (via Uniswap Oracle) whenever a swap occurs.
 
 - [UniswapV3 Liquidity Feed Provider ](/packages/hardhat/contracts/UniswapV3LiquidityProvider.sol.sol)
 - [UniswapV3 Price Feed Provider](/packages/hardhat/contracts/UniswapV3PriceProvider.sol)
-- [UniswapV3 Liquidity Feed Provider ](/packages/hardhat/contracts/UniswapV3LiquidityProvider.sol.sol)
-- [UniswapV3 Price Feed Provider](/packages/hardhat/contracts/UniswapV3PriceProvider.sol)
+- [UniswapV4 Liquidity Feed Provider ](/packages/hardhat/contracts/UniswapV4LiquidityProvider.sol.sol)
+- [UniswapV4 Price Feed Provider](/packages/hardhat/contracts/UniswapV4PriceProvider.sol)
 
 ### Flare Network
 
