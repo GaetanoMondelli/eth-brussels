@@ -1,8 +1,36 @@
-# ETH BRUSSELS
+# X-DataAggregator
+
+## ETH BRUSSELS
+
+
+![alt text](brus.png)
 
 ## What it does
 
-### Oracle data and on-chain Aggregator
+Some DeFi protocols rely on on-chain data about the assets they manage, such as prices from oracles. While most oracle solutions only provide price data, DeFi protocols can benefit from more detailed information, such as liquidity, volatility, or owner concentration, etc. This helps protocols filter out tokens with insufficient liquidity or high volatility, or propose different fees based on these parameters. Another challenge is ensuring that data is synchronized to reflect the state at the same time interval. This data could often be more relevant on other chains than the one where the tokens or their derivatives are managed. This lack of synchronized, comprehensive data makes decision-making for DeFi protocols less efficient.
+
+The proposed solution is a Multi-Chain Aggregator that periodically collects and integrates data from multiple sources, including price oracles and other on-chain protocols, to compute key metrics. Some use cases include the ability to obtain price data from various on-chain and off-chain sources, with the flexibility to refine how the price is calculated as better sources become available. For example, it can filter out tokens from a protocol that have high volatility on their origin chain or have been flagged as insecure due to a paused main smart contract. This solution also supports multichain scenarios. For instance, when attempting to swap tokens across different chains, the data aggregator can provide liquidity information across these chains, indicating the likelihood of the swap and the expected price range.
+
+For this hackathon, we focused on using the aggregator to create decentralized market-cap indexes, similar to the S&P 500 for stocks. Our Index Generator contract utilizes the aggregator to obtain token supply data and asset prices from various oracle sources to calculate market cap. It then sorts the tokens by descending market capitalization and filters out those with insufficient liquidity.
+
+This can be used for dynamic allow-listing of assets that meet specific criteria, ensuring only those with adequate liquidity and market presence are included in the protocol. For example, it can be used to create collusion-resistant crypto ETFs that do not rely on external or to decide how to create a convenient liquidity pool to launch a new token.
+
+![alt text](logo.png)
+
+## How it's Made
+
+We utilised different oracle solutions for centralised price feed, including FTSOv2 from Flare, Pyth Network, and Chronicle Protocols.
+
+For liquidity and DEX price feeds, we used liquidity pools built with Uniswap V3 and Uniswap V4. We demonstrated how Uniswap V4 can make liquidity oracles less prone to manipulation by preventing certain operations (addLiquidity, removeLiquidity) and creating new data points every time a swap is performed.
+
+Other on-chain data for assets follows the standard ERC framework. For instance, calculating market capitalization requires both the price and the token supply. In this context, the total supply of an asset is obtained using the ERC20/1155-totalSupply () function.
+
+Since some of the on-chain data are on different blockchains, we ensured full accessibility by building a LayerZero Omni app, making the data available across all relevant platforms. This approach enables smart contracts to aggregate and compute accurate metrics, providing a configurable and reliable decentralized aggregator.
+
+
+![alt text](diagram.png)
+
+### Oracle data and on-chain Aggregator 
 
 By aggregating prices over a certain period using secure and reliable price oracles, and connecting this data to the supply of the tokens via a smart contract, we use similar methodologies to rank assets in indexes.
 
@@ -139,6 +167,10 @@ We implemented a bribing system where the index aggregator has funds to pay orac
 Users can see the remaining funds and determine if there is enough runway to maintain a safe index.
 
 ---
+
+---
+
+
 
 ### Uniswap Foundation
 
