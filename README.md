@@ -200,7 +200,7 @@ Note: we used a not updated implementation of hooks from `awesome uniswap hooks`
 
 ### Flare Network
 
-We
+We decided to deploy the Data Aggregator on Conston2 to take advantage of the cost-effective price oracles (FTSOv2) and integrate it with data from other chains that require fewer updates using a LayerZero OmniApp.
 
 
 Contracts:
@@ -217,19 +217,29 @@ Training contracts:
 
 ### Pyth Network
 
+We integrated an example of Pyth Network feed as a data provider due to its vast variety of price feeds and coverage of the biggest pairs. This extensive range of data can be used for many use cases and integrates seamlessly with other on-chain data to create comprehensive metrics for DeFi protocols.
+
+
 - [PythReader Price Provider Example](/packages/hardhat/contracts/PythReader.sol)
 - [Data Provider Interface](/packages/hardhat/contracts/IDataProvider.sol)
 
 ### Chronicle Protocol
+
+We decided to add Chronicle as a data provider to take advantage of the assets it covers and to propagate and integrate price feeds with other on-chain data, creating metrics that can be utilized by other protocols. xx11 was chosen because it is one of the first protocols to provide price feeds and is known for its reliability.
 
 - [Chronicle Price Provider Example](/packages/hardhat/contracts/ChronicleDataProvider.sol)
 - [Data Provider Interface](/packages/hardhat/contracts/IDataProvider.sol)
 
 ### LayerZero
 
+Our main idea is to create a data aggregator dapp acting as a source of truth that is accessible on different chains. We believe that multi-chain functionality is not just about bridging tokens; it’s about expanding the reach of certain data across various networks. 
+
+By making data available on different networks, protocols can perform more effectively. This is why we chose the Omni App (OApp) to make relevant on-chain data available on all networks.
+
+
 - [Omni app DataAggregator using layerZero](/packages/hardhat/contracts/DataAggregator.sol)
 
 Training contracts:
 
 - [FtsoV2FeedConsumerLz](/packages/hardhat/contracts/FtsoV2FeedConsumerLz.sol)
-- [Simple string update](packages/hardhat/contracts/lz.sol)
+- [Simple string update example](packages/hardhat/contracts/lz.sol)
