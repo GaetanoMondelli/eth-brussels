@@ -7,7 +7,7 @@ import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 const deployedContracts = {
   114: {
     FtsoV2FeedConsumer: {
-      address: "0x04a14C5c473bde21bDd52C2f169d99597B298a5B",
+      address: "0x45ed7F721549619b81F50d9Ec489183Ad59c273c",
       abi: [
         {
           inputs: [],
@@ -56,11 +56,69 @@ const deployedContracts = {
           stateMutability: "view",
           type: "function",
         },
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "_assetName",
+              type: "string",
+            },
+          ],
+          name: "getFtsoV2CurrentFeedValuesByName",
+          outputs: [
+            {
+              internalType: "uint256[]",
+              name: "_feedValues",
+              type: "uint256[]",
+            },
+            {
+              internalType: "int8[]",
+              name: "_decimals",
+              type: "int8[]",
+            },
+            {
+              internalType: "uint64",
+              name: "_timestamp",
+              type: "uint64",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "string[]",
+              name: "_assetName",
+              type: "string[]",
+            },
+          ],
+          name: "getFtsoV2CurrentFeedValuesByNames",
+          outputs: [
+            {
+              internalType: "uint256[]",
+              name: "_feedValues",
+              type: "uint256[]",
+            },
+            {
+              internalType: "int8[]",
+              name: "_decimals",
+              type: "int8[]",
+            },
+            {
+              internalType: "uint64",
+              name: "_timestamp",
+              type: "uint64",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
       ],
       inheritedFunctions: {},
     },
     FtsoV2FeedConsumerLz: {
-      address: "0x314773c7C42587d72801A47687CebD789b8BC363",
+      address: "0x515e3c7D5A06253c8f9974f4A01018AaD257e48f",
       abi: [
         {
           inputs: [
@@ -611,19 +669,201 @@ const deployedContracts = {
         },
       ],
       inheritedFunctions: {
-        allowInitializePath: "@layerzerolabs/lz-evm-oapp-v2/contracts/oapp/OApp.sol",
+        allowInitializePath:
+          "@layerzerolabs/lz-evm-oapp-v2/contracts/oapp/OApp.sol",
         endpoint: "@layerzerolabs/lz-evm-oapp-v2/contracts/oapp/OApp.sol",
-        isComposeMsgSender: "@layerzerolabs/lz-evm-oapp-v2/contracts/oapp/OApp.sol",
+        isComposeMsgSender:
+          "@layerzerolabs/lz-evm-oapp-v2/contracts/oapp/OApp.sol",
         lzReceive: "@layerzerolabs/lz-evm-oapp-v2/contracts/oapp/OApp.sol",
         nextNonce: "@layerzerolabs/lz-evm-oapp-v2/contracts/oapp/OApp.sol",
         oAppVersion: "@layerzerolabs/lz-evm-oapp-v2/contracts/oapp/OApp.sol",
         owner: "@layerzerolabs/lz-evm-oapp-v2/contracts/oapp/OApp.sol",
         peers: "@layerzerolabs/lz-evm-oapp-v2/contracts/oapp/OApp.sol",
-        renounceOwnership: "@layerzerolabs/lz-evm-oapp-v2/contracts/oapp/OApp.sol",
+        renounceOwnership:
+          "@layerzerolabs/lz-evm-oapp-v2/contracts/oapp/OApp.sol",
         setDelegate: "@layerzerolabs/lz-evm-oapp-v2/contracts/oapp/OApp.sol",
         setPeer: "@layerzerolabs/lz-evm-oapp-v2/contracts/oapp/OApp.sol",
-        transferOwnership: "@layerzerolabs/lz-evm-oapp-v2/contracts/oapp/OApp.sol",
+        transferOwnership:
+          "@layerzerolabs/lz-evm-oapp-v2/contracts/oapp/OApp.sol",
       },
+    },
+    IndexGeneratorV2: {
+      address: "0x693EA8eacf71D19567A7Fe161b67697887ABcB4E",
+      abi: [
+        {
+          inputs: [],
+          stateMutability: "nonpayable",
+          type: "constructor",
+        },
+        {
+          inputs: [],
+          name: "colleectBribes",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "counter",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "indexSize",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256[]",
+              name: "indexOrders",
+              type: "uint256[]",
+            },
+            {
+              internalType: "string",
+              name: "tag",
+              type: "string",
+            },
+          ],
+          name: "persistIndex",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "sendMainChain",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "string",
+                  name: "_name",
+                  type: "string",
+                },
+                {
+                  internalType: "address",
+                  name: "_address",
+                  type: "address",
+                },
+                {
+                  internalType: "uint32",
+                  name: "_chainId",
+                  type: "uint32",
+                },
+                {
+                  internalType: "uint32",
+                  name: "_id",
+                  type: "uint32",
+                },
+              ],
+              internalType: "struct TokenInfo[]",
+              name: "_tokenInfo",
+              type: "tuple[]",
+            },
+            {
+              internalType: "address",
+              name: "_endpoint",
+              type: "address",
+            },
+            {
+              internalType: "address[]",
+              name: "_dataProviders",
+              type: "address[]",
+            },
+            {
+              components: [
+                {
+                  internalType: "uint256",
+                  name: "_timeWindow",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "_sampleSize",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "_bribeUnit",
+                  type: "uint256",
+                },
+              ],
+              internalType: "struct AggregatorParams",
+              name: "_aggregatorParams",
+              type: "tuple",
+            },
+            {
+              internalType: "uint256",
+              name: "indexSize",
+              type: "uint256",
+            },
+          ],
+          name: "updateTokenParams",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "updateTokenPars",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+      ],
+      inheritedFunctions: {},
     },
     YourContract: {
       address: "0xa88e1a1f892124a33DC6044b6B869C467238D1e3",

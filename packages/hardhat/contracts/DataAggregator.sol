@@ -43,8 +43,12 @@ contract DataAggregator is OApp {
 	uint256[] public liquidities;
 	uint256[] public prices;
 	uint256[] public tokenParamsTimestampUpdates;
-
 	Data[] public messages;
+	Data[] public supplyMessages;
+	Data[] public liquidityMessages;
+	Data[] public priceMessages;
+
+
 
 	mapping(uint256 => uint256[]) public movingAverage;
 	uint256 sampleSize;
@@ -134,6 +138,7 @@ contract DataAggregator is OApp {
 
 		// DATA MESSAGES
 		if (isMainChain()) {
+			// RECEIVED
 			for (uint256 i = 0; i < messages.length; i++) {
 				if (messages[i].dataType == DataTypes.PRICE) {
 					prices[tokens[messages[i].label]] = messages[i].metricData;
@@ -151,6 +156,7 @@ contract DataAggregator is OApp {
 		}
 
 		if (!isMainChain()) {
+			// SEND 
 			Data[] memory _supplyMessages = new Data[](tokenInfo.length);
 			Data[] memory _liquidityMessages = new Data[](tokenInfo.length);
 
@@ -195,9 +201,9 @@ contract DataAggregator is OApp {
 		bytes calldata /*_extraData*/
 	) internal override {
 		// data = abi.decode(payload, (string));
-		Data[] memory inboxMessages = abi.decode(payload, (Data[]));
-		for (uint256 i = 0; i < inboxMessages.length; i++) {
-			messages.push(inboxMessages[i]);
+		Data[] memory _inboxMessages = abi.decode(payload, (Data[]));
+		for (uint256 i = 0; i < _inboxMessages.length; i++) {
+			messages.push(_inboxMessages[i]);
 		}
 	}
 
@@ -226,10 +232,21 @@ contract DataAggregator is OApp {
 
 	function send(
 		uint32 _dstEid,
-		bytes memory _options,
-		IndexUpdateMessage memory data
+		bytes memory _options
 	) external payable returns (MessagingReceipt memory receipt) {
-		bytes memory _payload = abi.encode(data);
+		Data[] memory outboxMessages = new Data[](supplyMessages.length + liquidityMessages.length + priceMessages.length);
+		for (uint256 i = 0; i < supplyMessages.length; i++) {
+			outboxMessages[i] = supplyMessages[i];
+		}
+		for (uint256 i = 0; i < liquidityMessages.length; i++) {
+			outboxMessages[supplyMessages.length + i] = liquidityMessages[i];
+		}
+		for (uint256 i = 0; i < priceMessages.length; i++) {
+			outboxMessages[supplyMessages.length + liquidityMessages.length + i] = priceMessages[i];
+		}
+
+		// TO-DO: need to clean the queues
+		bytes memory _payload = abi.encode(outboxMessages);
 		receipt = _lzSend(
 			_dstEid,
 			_payload,

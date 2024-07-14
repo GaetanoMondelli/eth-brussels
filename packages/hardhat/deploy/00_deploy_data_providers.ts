@@ -48,26 +48,58 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
       // autoMine: can be passed to the deploy function to make the deployment process faster on local networks by
     });
 
+
+    await deploy("IndexGeneratorV2", {
+      from: deployer,
+      // Contract constructor arguments
+      args: [],
+      log: true,
+      // autoMine: can be passed to the deploy function to make the deployment process faster on local networks by
+    });
+
+    console.log("📡 Deploying IndexGeneratorV2 to the network conston2 as deployer...");
+
+    return;
+
+    await deploy("FtsoV2FeedConsumer", {
+      from: deployer,
+      // Contract constructor arguments
+      args: [],
+      log: true,
+      // autoMine: can be passed to the deploy function to make the deployment process faster on local networks by
+    });
+
+    const ftsoV2FeedConsumer = await hre.ethers.getContract<Contract>("FtsoV2FeedConsumer", deployer);
+    console.log(
+      "👋 Initial prices:",
+      await ftsoV2FeedConsumer.getFtsoV2CurrentFeedValuesByNames([
+        "BTC",
+        "XRP",
+        "BNB",
+        "SOL",
+        "XRP",
+        "DOGE",
+        "AVAX",
+        "MATIC",
+        "LTC",
+        "UNI",
+      ]),
+    );
+    return;
     // Get the deployed contract to interact with it after deploying.
     const ftsoV2FeedConsumerFlare = await hre.ethers.getContract<Contract>("FtsoV2FeedConsumerLz", deployer);
     console.log("👋 Initial prices:", await ftsoV2FeedConsumerFlare.getFtsoV2CurrentFeedValues());
 
     // await ftsoV2FeedConsumerFlare.setPeer(flareTestnetEid, bytes32Peer);
     console.log("Check the peer", await ftsoV2FeedConsumerFlare.peers(flareTestnetEid));
-    const quote = await ftsoV2FeedConsumerFlare.quote(
-      flareTestnetEid,
-      "first message from gaetano",
-      _options.toHex(),
-      false,
-    );
-    console.log("quote", quote);
-    console.log("First message ", await ftsoV2FeedConsumerFlare.data());
-
-    // const tx = await ftsoV2FeedConsumerFlare.send(flareTestnetEid, "first message from gaetano", _options.toHex(), {
-    //   value: quote[0],
-    // });
-
-    // console.log("tx", tx);
+    // const quote = await ftsoV2FeedConsumerFlare.quote(
+    //   flareTestnetEid,
+    //   "first message from gaetano",
+    //   _options.toHex(),
+    //   false,
+    // );
+    // console.log("quote", quote);
+    // console.log("First message ", await ftsoV2FeedConsumerFlare.data());
   }
 
   if (hre.network.name === "sepolia") {

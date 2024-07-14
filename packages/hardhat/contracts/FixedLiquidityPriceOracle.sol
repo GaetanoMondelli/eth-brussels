@@ -60,7 +60,7 @@ contract FixedLiquidityPriceOracle is BaseHook {
 				beforeInitialize: true,
 				afterInitialize: true,
 				beforeModifyPosition: true,
-				afterModifyPosition: true,
+				afterModifyPosition: false,
 				beforeSwap: true,
 				afterSwap: false,
 				beforeDonate: false,
@@ -128,13 +128,7 @@ contract FixedLiquidityPriceOracle is BaseHook {
 		IPoolManager.ModifyPositionParams calldata params,
 		bytes calldata
 	) external override onlyByManager returns (bytes4) {
-		int24 maxTickSpacing = poolManager.MAX_TICK_SPACING();
-		if (
-			params.tickLower != TickMath.minUsableTick(maxTickSpacing) ||
-			params.tickUpper != TickMath.maxUsableTick(maxTickSpacing)
-		) revert OraclePositionsMustBeFullRange();
-		_updatePool(key);
-		return FixedLiquidityPriceOracle.beforeModifyPosition.selector;
+		revert OnlyOneOraclePoolAllowed();
 	}
 
 	function beforeSwap(
@@ -147,7 +141,6 @@ contract FixedLiquidityPriceOracle is BaseHook {
 		override
 		onlyByManager
 		returns (
-			// returns (bytes4, BeforeSwapDelta, uint24)
 			bytes4
 		)
 	{

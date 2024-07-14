@@ -18,13 +18,13 @@ const { Group } = Avatar;
 const youngList = Object.values(young);
 
 const Indexes: NextPage = () => {
-  const [showAll, setShowAll] = useState(false);
+  const [showAll, setShowAll] = useState(true);
   const [lastUpdate, setLastUpdate] = useState("13 June 2024");
   const [modalState, setModalState] = useState(0);
   const indexData = Object.values(market);
-  const indexLimit = 20;
+  const indexLimit = 11;
 
-  const contractName = "IndexAggregator";
+  const contractName = "IndexGeneratorV2";
   const { targetNetwork } = useTargetNetwork();
 
   const isModalVisible = modalState > 0;
@@ -33,7 +33,7 @@ const Indexes: NextPage = () => {
 
   const { writeContract } = useWriteContract();
 
-  const currentChain = targetNetwork.name === "Sepolia" ? "ETHEREUM" : targetNetwork.name;
+  const currentChain = targetNetwork.name !== "Sepolia" ? "ETHEREUM" : targetNetwork.name;
 
   return (
     <Watermark
@@ -65,7 +65,7 @@ const Indexes: NextPage = () => {
             marginBottom: "1rem",
           }}
         >
-          Indexes
+          Indexes - Data Aggregator
         </h1>
 
         <h1>Price Oralces & OnChain aggregators</h1>
@@ -96,7 +96,25 @@ const Indexes: NextPage = () => {
               src="data:image/png;base64,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"
             ></Avatar>
           </Group>
-          Powered by <b>Flare</b>, <b>Chronicles Protocol</b> <b>Pyth Network</b> Price Feeds <br></br>
+          Powered by <b>Flare</b>, <b>Chronicles Protocol</b>, <b>Pyth Network</b> Price Feeds <br></br>
+          <br></br>
+          <Avatar
+            style={{
+              width: "30px",
+              height: "30px",
+              marginRight: "10px",
+            }}
+            src="https://img.cryptorank.io/coins/layer_zero1668092808242.png"
+          ></Avatar>
+          Powered by <b>LayerZeroV2</b> Bridges/OmniApp{" "}
+          <InfoCircleOutlined
+            onClick={() => {
+              setModalState(3);
+            }}
+            twoToneColor="#52c41a"
+          />
+          <br></br>
+
           <Avatar
             style={{
               width: "30px",
@@ -113,7 +131,7 @@ const Indexes: NextPage = () => {
             twoToneColor="#52c41a"
           />
         </h2>
-        <Switch
+        {/* <Switch
           checkedChildren="Show All Tokens"
           unCheckedChildren="Show Categories"
           checked={showAll}
@@ -121,7 +139,7 @@ const Indexes: NextPage = () => {
           style={{
             marginBottom: "1rem",
           }}
-        />
+        /> */}
         <br />
         <br />
 
@@ -207,8 +225,17 @@ const Indexes: NextPage = () => {
                   color: "white",
                   backgroundColor: "#f56a00",
                 }}
-                onClick={() => {
-                  setLastUpdate(new Date().toLocaleString());
+                onClick={async () => {
+                  await writeContract({
+                    address: contractsData[contractName].address,
+                    functionName: "sendMainChain",
+                    abi: contractsData[contractName].abi,
+                    args: [],
+                  });
+                  await setTimeout(() => {
+                    setLastUpdate(new Date().toLocaleString());
+                  }, 10000);
+
                 }}
               >
                 Collect Prices (Bribe)
@@ -223,16 +250,15 @@ const Indexes: NextPage = () => {
                     paddingLeft: "7px",
                     borderRadius: "10px",
                     color: "white",
-                    // green
                     backgroundColor: "#52c41a",
                   }}
                   onClick={async () => {
                     await writeContract({
-                      address: contractsData[contractName].address,
-                      functionName: "setChainId",
-                      abi: contractsData[contractName].abi,
-                      args: [targetNetwork.id, targetNetwork.id],
-                    });
+                    address: contractsData[contractName].address,
+                    functionName: "sendMainChain",
+                    abi: contractsData[contractName].abi,
+                    args: [],
+                  });
                   }}
                 >
                   Persist Index
@@ -290,8 +316,24 @@ const Indexes: NextPage = () => {
                     background: "#f4f8ff",
                   }}
                   actions={[
-                    <a key="list-loadmore-edit">{"Rank #" + item.market_cap_rank}</a>,
-                    <a key="list-loadmore-more">{"Lqdty: " + Math.random().toFixed(2) + "P"}</a>,
+                    <div>
+                      <a key="list-loadmore-edit">{"Rank #" + item.market_cap_rank}</a>
+                      <br></br>
+                      <Group maxCount={3} size="small" maxStyle={{ color: "#f56a00", backgroundColor: "#fde3cf" }}>
+                        {item.priceProviders.map((prov: any) => (
+                          <Avatar key={prov} src={prov} />
+                        ))}
+                      </Group>
+                    </div>,
+                    <div>
+                      <a key="list-loadmore-more">{"Lqdty/e18: " + item.liquidity + "L"}</a>
+                      <br></br>
+                      <Group maxCount={3} size="small" maxStyle={{ color: "#f56a00", backgroundColor: "#fde3cf" }}>
+                        {item.liquidityProviders.map((prov: any) => (
+                          <Avatar key={prov} src={prov} />
+                        ))}
+                      </Group>
+                    </div>,
                   ]}
                 >
                   <List.Item.Meta
@@ -353,10 +395,10 @@ const Indexes: NextPage = () => {
           height={1200}
           src={
             modalState === 1
-              ? "/images/tls_oracle.png"
+              ? "/images/diagram.png"
               : modalState === 2
-                ? "/images/attestation.png"
-                : "/images/index_aggr.png"
+                ? "/images/diagram.png"
+                : "/images/diagram.png"
           }
           style={{
             display: "flex",

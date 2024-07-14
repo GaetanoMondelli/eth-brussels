@@ -4,7 +4,6 @@ pragma solidity ^0.8.16;
 import "./IChronicle.sol";
 import "./IDataProvider.sol";
 import { IERC20 } from "./IERC20.sol";
-
 interface ISelfKisser {
 	/// @notice Kisses caller on oracle `oracle`.
 	function selfKiss(address oracle) external;

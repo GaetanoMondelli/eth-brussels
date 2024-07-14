@@ -3,10 +3,12 @@
 import { useEffect, useState } from "react";
 import { CheckCircleTwoTone } from "@ant-design/icons";
 import { Line, Pie } from "react-chartjs-2";
+
+
+import * as category from "../../../mocks/category.json";
 import { Avatar, InputNumber, List, Modal, Popover, Select, Tag, Watermark } from "antd";
 import { ArcElement, CategoryScale, Chart, LineElement, LinearScale, LogarithmicScale, PointElement } from "chart.js";
 import * as young from "../../../mocks/young.json";
-import * as category from "../../../mocks/category.json";
 import type { NextPage } from "next";
 import { useTargetNetwork } from "~~/hooks/scaffold-eth/useTargetNetwork";
 

@@ -24,41 +24,6 @@ contract IndexGenerator is DataAggregator {
 			indexOrders.length == indexSize,
 			"IndexAggregator: Invalid length of indexOrders"
 		);
-
-		// indexOrders is an array index order [2,0,1] means 2nd token, 0th token, 1st token for price calculation
-
-		// if (
-		// 	keccak256(abi.encodePacked(tag)) != keccak256(abi.encodePacked(""))
-		// ) {
-		// 	for (uint256 i = 0; i < tmpTokens.length; i++) {
-		// 		delete tmpTokens[i];
-		// 	}
-		// 	for (uint256 i = 0; i < tokenInfo.length; i++) {
-		// 		for (uint256 j = 0; j < tokenInfo[i]._tags.length; j++) {
-		// 			if (
-		// 				keccak256(abi.encodePacked(tokenInfo[i]._tags[j])) ==
-		// 				keccak256(abi.encodePacked(tag))
-		// 			) {
-		// 				// need to check if the tag was verified on the tagging system
-		// 				// require(
-		// 				//     taggingVerifier.tokenSymbolToVerifiedTagsMap(tokenInfo[i]._symbol, tag) == true,
-		// 				//     "IndexAggregator: Tag not verified"
-		// 				// );
-		// 				tmpTokens.push(tokenInfo[i]);
-		// 			}
-		// 		}
-		// 	}
-		// 	require(
-		// 		tmpTokens.length == indexOrders.length,
-		// 		"IndexAggregator: Invalid length of token with required tags"
-		// 	);
-		// } else {
-		// 	require(
-		// 		indexOrders.length == tokenInfo.length,
-		// 		"IndexAggregator: Invalid length of indexOrders"
-		// 	);
-		// }
-
 		uint256 token_a_value;
 		uint256 token_b_value;
 		for (uint256 i = 0; i < indexOrders.length - 1; i++) {
