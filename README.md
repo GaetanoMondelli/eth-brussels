@@ -160,8 +160,6 @@ Contracts:
 
 #### Bribing system
 
-Because on-chain data (price from oracles, supplies, and liquidity) is all pulled by a contract manager, this could become problematic if the manager fails to trigger the data. We considered a cron-job and set a [Chainlink Upkeep](https://automation.chain.link/sepolia/85061725038261017415132553308856974146790069167102999642891143434013567824903) to enforce the price pull (collectPriceFeeds method) however we wanted to make sure the updated process did not rely on an entity only and we ultimately decided that the most secure way was to implement an incentive system to ensure data were updated. 
-
 We implemented a bribing system where the index aggregator has funds and pays a certain amount to the first user who invokes the pull method within the required timeframe. 
 Users can see the remaining funds and determine if there is enough runway to maintain a safe index.
 
@@ -172,7 +170,8 @@ Users can see the remaining funds and determine if there is enough runway to mai
 
 ### Uniswap Foundation 
 
-code references
+The Multi-Chain Data Aggregator collects data about token liquidity using Uniswap V3 pools, highlighting vulnerabilities where pool managers can manipulate liquidity by adding or removing it, thus affecting observed values. A better solution is presented using Uniswap V4 hooks, which fix the initial liquidity by reverting any attempts to add or remove liquidity. This approach ensures accurate data by collecting new observation states (via Uniswap Oracle) whenever a swap occurs.
+
 
 ### Flare Network
 
