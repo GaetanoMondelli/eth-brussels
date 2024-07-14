@@ -20,7 +20,7 @@ contract FixedLiquidityPriceOracle is BaseHook {
 		_;
 	}
 
-	error OnlyOneOraclePoolAllowed();
+	error LiquidityCannoBeChanged();
 	error OraclePositionsMustBeFullRange();
 	error OraclePoolMustLockLiquidity();
 
@@ -78,7 +78,7 @@ contract FixedLiquidityPriceOracle is BaseHook {
 		// there may only be one pool per pair of tokens that use this hook. The tick spacing is set to the maximum
 		// because we only allow max range liquidity in this pool.
 		if (key.fee != 0 || key.tickSpacing != poolManager.MAX_TICK_SPACING())
-			revert OnlyOneOraclePoolAllowed();
+			revert LiquidityCannoBeChanged();
 		return FixedLiquidityPriceOracle.beforeInitialize.selector;
 	}
 
@@ -128,7 +128,7 @@ contract FixedLiquidityPriceOracle is BaseHook {
 		IPoolManager.ModifyPositionParams calldata params,
 		bytes calldata
 	) external override onlyByManager returns (bytes4) {
-		revert OnlyOneOraclePoolAllowed();
+		revert LiquidityCannoBeChanged();
 	}
 
 	function beforeSwap(

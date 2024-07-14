@@ -146,10 +146,62 @@ The Multi-Chain Data Aggregator initially collected data about token liquidity u
 
 - [UniswapV3 Liquidity Feed Provider ](/packages/hardhat/contracts/UniswapV3LiquidityProvider.sol.sol)
 - [UniswapV3 Price Feed Provider](/packages/hardhat/contracts/UniswapV3PriceProvider.sol)
-- [UniswapV4 Liquidity Feed Provider ](/packages/hardhat/contracts/UniswapV4LiquidityProvider.sol.sol)
+- [UniswapV4 Liquidity Feed Provider ](/packages/hardhat/contracts/UniswapV4LiquidityProvider.sol)
 - [UniswapV4 Price Feed Provider](/packages/hardhat/contracts/UniswapV4PriceProvider.sol)
 
+#### v4 Hook 
+- [v4 Hook to prevent manager to manipulate liquidity](packages/hardhat/contracts/FixedLiquidityPriceOracle.sol)
+
+Note: we used a not updated implementation of hooks from `awesome uniswap hooks` [here](https://github.com/ora-io/awesome-uniswap-hooks) compatible with Hardhat [here](https://github.com/Gnome101/UniswapV4Hardhat)
+
+``` java
+
+  // REVERTING when trying to modify liquidity
+	function beforeModifyPosition(  // now beforeAddingLiquidity & beforeRemovingLiquidity
+		address,
+		PoolKey calldata key,
+		IPoolManager.ModifyPositionParams calldata params,
+		bytes calldata
+	) external override onlyByManager returns (bytes4) {
+		revert LiquidityCannoBeChanged();
+	}
+
+
+  // Pushing an observation about the pool state to the data aggregator (same as v3 Oracles)
+  function _updatePool(PoolKey calldata key) private {
+		PoolId id = key.toId();
+		(, int24 tick, , ) = poolManager.getSlot0(id);
+
+		uint128 liquidity = poolManager.getLiquidity(id);
+
+		(states[id].index, states[id].cardinality) = observations[id].write(
+			states[id].index,
+			_blockTimestamp(),
+			0,
+			liquidity,
+			states[id].cardinality,
+			states[id].cardinalityNext
+		);
+	}
+
+  	Hooks.Calls({  // --> now Hooks.Permissions
+				beforeInitialize: true,
+				afterInitialize: true,
+				beforeModifyPosition: true,
+				afterModifyPosition: false,
+				beforeSwap: true,
+				afterSwap: false,
+				beforeDonate: false,
+				afterDonate: false
+			});
+
+```
+
+
 ### Flare Network
+
+We
+
 
 Contracts:
 
